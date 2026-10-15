@@ -183,3 +183,10 @@ class SoundManager {
 
 // Instancia global
 window.sound = new SoundManager();
+
+// Desbloqueo anticipado de AudioContext en iOS Safari con el primer toque en pantalla
+['touchstart', 'touchend', 'click'].forEach(function(evt) {
+  document.addEventListener(evt, function() {
+    if (window.sound) sound.initContext();
+  }, { passive: true, once: true });
+});

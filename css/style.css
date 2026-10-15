@@ -1,24 +1,95 @@
 /* =============================================================================
-   ESTILOS PERSONALIZADOS: MATEMÁTICAS 4.º · TEMA 1
-   Optimizado para iPad, pantallas táctiles, desktop y modo impresión
+   ESTILOS COMPLETOS COMPATIBLES CON IPAD Y NAVEGADORES LEGACY (iOS 12.5.8+)
+   Cero dependencias externas · 100% CSS puro estándar con soporte WebKit / Safari
    ============================================================================= */
 
 :root {
-  --font-sans: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --secondary: #10b981;
+  --accent: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
 body {
   font-family: var(--font-sans);
   background-color: #f8fafc;
+  background-image: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #fdf4ff 100%);
+  color: #1e293b;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
 }
 
 .font-display {
   font-family: var(--font-display);
+  letter-spacing: -0.02em;
 }
 
-/* Ocultar scrollbar pero permitir scroll fluido en móviles y iPads */
+/* =============================================================================
+   COMPATIBILIDAD FLEX GAP EN SAFARI 12 (iOS 12.5.8)
+   Safari 12 no soporta 'gap' en flexbox. Añadimos selectores lobotomizados
+   ============================================================================= */
+.gap-1 { gap: 0.25rem; grid-gap: 0.25rem; }
+.gap-1\.5 { gap: 0.375rem; grid-gap: 0.375rem; }
+.gap-2 { gap: 0.5rem; grid-gap: 0.5rem; }
+.gap-2\.5 { gap: 0.625rem; grid-gap: 0.625rem; }
+.gap-3 { gap: 0.75rem; grid-gap: 0.75rem; }
+.gap-4 { gap: 1rem; grid-gap: 1rem; }
+.gap-6 { gap: 1.5rem; grid-gap: 1.5rem; }
+.gap-8 { gap: 2rem; grid-gap: 2rem; }
+
+/* Margins automáticos entre elementos hermanos en Flexbox horizontal */
+.flex.gap-1 > * + * { margin-left: 0.25rem; }
+.flex.gap-1\.5 > * + * { margin-left: 0.375rem; }
+.flex.gap-2 > * + * { margin-left: 0.5rem; }
+.flex.gap-2\.5 > * + * { margin-left: 0.625rem; }
+.flex.gap-3 > * + * { margin-left: 0.75rem; }
+.flex.gap-4 > * + * { margin-left: 1rem; }
+.flex.gap-6 > * + * { margin-left: 1.5rem; }
+.flex.gap-8 > * + * { margin-left: 2rem; }
+
+/* Para flex-col vertical */
+.flex-col > * + * { margin-left: 0 !important; }
+.flex-col.gap-1 > * + * { margin-top: 0.25rem; }
+.flex-col.gap-2 > * + * { margin-top: 0.5rem; }
+.flex-col.gap-3 > * + * { margin-top: 0.75rem; }
+.flex-col.gap-4 > * + * { margin-top: 1rem; }
+.flex-col.gap-6 > * + * { margin-top: 1.5rem; }
+
+/* Spacing vertical space-y */
+.space-y-1 > * + * { margin-top: 0.25rem !important; margin-bottom: 0 !important; }
+.space-y-1\.5 > * + * { margin-top: 0.375rem !important; margin-bottom: 0 !important; }
+.space-y-2 > * + * { margin-top: 0.5rem !important; margin-bottom: 0 !important; }
+.space-y-2\.5 > * + * { margin-top: 0.625rem !important; margin-bottom: 0 !important; }
+.space-y-3 > * + * { margin-top: 0.75rem !important; margin-bottom: 0 !important; }
+.space-y-4 > * + * { margin-top: 1rem !important; margin-bottom: 0 !important; }
+.space-y-6 > * + * { margin-top: 1.5rem !important; margin-bottom: 0 !important; }
+.space-y-8 > * + * { margin-top: 2rem !important; margin-bottom: 0 !important; }
+
+/* =============================================================================
+   OPTIMIZACIONES TÁCTILES Y DE ENTRADA PARA IPAD (iOS 12.5.8)
+   ============================================================================= */
+/* Prevenir retraso táctil de 300ms en iPad */
+button, a, input, select {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Scroll táctil nativo fluido con inercia */
+.overflow-x-auto, .overflow-y-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ocultar barra de scroll en navegadores WebKit */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -27,27 +98,69 @@ body {
   scrollbar-width: none;
 }
 
-/* Animaciones suaves */
+/* Soporte de desenfoque de fondo en WebKit (iOS Safari 12) */
+header {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+/* Prevenir el auto-zoom indeseado de Safari al enfocar inputs en iPad/iPhone */
+@media screen and (max-width: 1024px) {
+  input[type="text"],
+  input[type="number"],
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* Normalización de inputs en WebKit */
+input[type="text"], select {
+  -webkit-appearance: none;
+  border-radius: 0.75rem;
+}
+
+/* =============================================================================
+   ANIMACIONES SUAVES COMPATIBLES
+   ============================================================================= */
 @keyframes bounceSuccess {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%, 100% {
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+    -webkit-transform: translateY(-8px);
+  }
 }
 
 @keyframes shakeError {
-  0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-6px); }
-  40%, 80% { transform: translateX(6px); }
+  0%, 100% {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-6px);
+    -webkit-transform: translateX(-6px);
+  }
+  40%, 80% {
+    transform: translateX(6px);
+    -webkit-transform: translateX(6px);
+  }
 }
 
 .animate-success {
   animation: bounceSuccess 0.5s ease-in-out;
+  -webkit-animation: bounceSuccess 0.5s ease-in-out;
 }
 
 .animate-error {
   animation: shakeError 0.4s ease-in-out;
+  -webkit-animation: shakeError 0.4s ease-in-out;
 }
 
-/* Estilos de impresión (Para el diploma y la guía resumen) */
+/* =============================================================================
+   ESTILOS DE IMPRESIÓN (DIPLOMA Y GUÍA DE ESTUDIO)
+   ============================================================================= */
 @media print {
   .no-print,
   header,
@@ -60,6 +173,7 @@ body {
 
   body {
     background: white !important;
+    background-image: none !important;
     color: black !important;
     padding: 0 !important;
     margin: 0 !important;
@@ -69,12 +183,11 @@ body {
     display: block !important;
   }
 
-  /* Ocultar secciones que no sean la activa */
   .hidden {
     display: none !important;
   }
 
-  .shadow-xl, .shadow-2xl, .shadow-sm, .shadow-md {
+  .shadow-xl, .shadow-2xl, .shadow-sm, .shadow-md, .shadow-lg {
     box-shadow: none !important;
   }
 }

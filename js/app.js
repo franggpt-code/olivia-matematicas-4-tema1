@@ -1,13 +1,36 @@
 // =============================================================================
 // APLICACIÓN PRINCIPAL: MATEMÁTICAS 4.º · TEMA 1
 // Páginas 6 a 9: Numeración, Aproximación, Romanos y Ordinales
+// Compatible con iPad iOS 12.5.8+ y Safari Legacy
 // =============================================================================
+
+// Helper seguro para localStorage en iPad / Safari (evita excepciones en modo privado)
+var safeStorage = {
+  get: function(key, defaultVal) {
+    try {
+      var val = localStorage.getItem(key);
+      return val !== null ? val : defaultVal;
+    } catch (e) {
+      return defaultVal;
+    }
+  },
+  set: function(key, val) {
+    try {
+      localStorage.setItem(key, val);
+    } catch (e) {}
+  }
+};
+
+function getInputValue(id, container) {
+  var el = container ? container.querySelector(id) : document.getElementById(id);
+  return el ? el.value : '';
+}
 
 class MathApp {
   constructor() {
     this.currentTab = 'home';
-    this.studentName = localStorage.getItem('olivia_math_name') || 'Olivia';
-    this.stars = parseInt(localStorage.getItem('olivia_math_stars') || '0', 10);
+    this.studentName = safeStorage.get('olivia_math_name', 'Olivia');
+    this.stars = parseInt(safeStorage.get('olivia_math_stars', '0'), 10);
     this.activeScenarioIndex = 0; // Por defecto Aventura 1 (Andalucía)
     this.scenario = MathData.scenarios[0];
 
@@ -46,14 +69,14 @@ class MathApp {
 
   addStars(count = 1) {
     this.stars += count;
-    localStorage.setItem('olivia_math_stars', this.stars);
+    safeStorage.set('olivia_math_stars', this.stars);
     this.updateUserUI();
     if (window.sound) sound.playCorrect();
   }
 
   setStudentName(name) {
     this.studentName = name || 'Olivia';
-    localStorage.setItem('olivia_math_name', this.studentName);
+    safeStorage.set('olivia_math_name', this.studentName);
     this.updateUserUI();
   }
 
@@ -675,9 +698,9 @@ class MathApp {
         const val = v[year];
         const dec = MathUtils.decompose(val);
 
-        const inOrders = document.getElementById(`input-base-orders-${year}`)?.value || '';
-        const inValues = document.getElementById(`input-base-values-${year}`)?.value || '';
-        const inWords  = document.getElementById(`input-base-words-${year}`)?.value || '';
+        const inOrders = getInputValue(`input-base-orders-${year}`);
+        const inValues = getInputValue(`input-base-values-${year}`);
+        const inWords  = getInputValue(`input-base-words-${year}`);
         const fb = document.getElementById(`feedback-ex1-${year}`);
 
         // Verificaciones
@@ -868,7 +891,7 @@ class MathApp {
     const btnAlba = document.getElementById('btn-check-ord-alba');
     if (btnAlba) {
       btnAlba.addEventListener('click', () => {
-        const val = MathUtils.parseNumber(document.getElementById('input-ord-alba')?.value);
+        const val = MathUtils.parseNumber(getInputValue('input-ord-alba'));
         const fb = document.getElementById('feedback-ord-alba');
         if (val === q.albaPos) {
           fb.innerHTML = `<span class="text-emerald-600">✓ ¡Correcto! ${q.albaPos}.º (${MathUtils.getOrdinal(q.albaPos).femWord}).</span>`;
@@ -883,7 +906,7 @@ class MathApp {
     const btnFelix = document.getElementById('btn-check-ord-felix');
     if (btnFelix) {
       btnFelix.addEventListener('click', () => {
-        const val = MathUtils.parseNumber(document.getElementById('input-ord-felix')?.value);
+        const val = MathUtils.parseNumber(getInputValue('input-ord-felix'));
         const fb = document.getElementById('feedback-ord-felix');
         if (val === q.felixAheadOfAlba) {
           fb.innerHTML = `<span class="text-emerald-600">✓ ¡Correcto! ${q.felixAheadOfAlba} lugares por delante.</span>`;
@@ -1295,8 +1318,8 @@ class MathApp {
     document.querySelectorAll('.btn-check-det-card').forEach(btn => {
       btn.addEventListener('click', () => {
         const cardYear = btn.getAttribute('data-card');
-        const numVal = MathUtils.parseNumber(document.getElementById(`det-num-${cardYear}`)?.value);
-        const selectedYear = document.getElementById(`det-year-${cardYear}`)?.value;
+        const numVal = MathUtils.parseNumber(getInputValue(`det-num-${cardYear}`));
+        const selectedYear = getInputValue(`det-year-${cardYear}`);
         const fb = document.getElementById(`feedback-det-${cardYear}`);
 
         const expectedNum = v[cardYear];
@@ -1319,7 +1342,7 @@ class MathApp {
     const btnRange = document.getElementById('btn-check-range-2018');
     if (btnRange) {
       btnRange.addEventListener('click', () => {
-        const userVal = MathUtils.parseNumber(document.getElementById('det-input-range-2018')?.value);
+        const userVal = MathUtils.parseNumber(getInputValue('det-input-range-2018'));
         const fb = document.getElementById('feedback-range-2018');
         const lower = v[2022];
         const upper = v[2019];
@@ -1339,8 +1362,8 @@ class MathApp {
     const btnApprox = document.getElementById('btn-check-approx-range');
     if (btnApprox) {
       btnApprox.addEventListener('click', () => {
-        const low = MathUtils.parseNumber(document.getElementById('det-approx-lower')?.value);
-        const high = MathUtils.parseNumber(document.getElementById('det-approx-higher')?.value);
+        const low = MathUtils.parseNumber(getInputValue('det-approx-lower'));
+        const high = MathUtils.parseNumber(getInputValue('det-approx-higher'));
         const fb = document.getElementById('feedback-approx-range');
 
         const roundLow = MathUtils.roundNumber(low, 'DM');
@@ -1382,8 +1405,8 @@ class MathApp {
     const btnLast = document.getElementById('btn-check-last-places');
     if (btnLast) {
       btnLast.addEventListener('click', () => {
-        const numA = MathUtils.parseNumber(document.getElementById('det-ord-num-a')?.value);
-        const numB = MathUtils.parseNumber(document.getElementById('det-ord-num-b')?.value);
+        const numA = MathUtils.parseNumber(getInputValue('det-ord-num-a'));
+        const numB = MathUtils.parseNumber(getInputValue('det-ord-num-b'));
         const fb = document.getElementById('feedback-last-places');
 
         if (numA === aq.colaA && numB === aq.colaB) {
@@ -1401,7 +1424,7 @@ class MathApp {
     const btnJuan = document.getElementById('btn-check-juan-total');
     if (btnJuan) {
       btnJuan.addEventListener('click', () => {
-        const val = MathUtils.parseNumber(document.getElementById('det-input-juan-total')?.value);
+        const val = MathUtils.parseNumber(getInputValue('det-input-juan-total'));
         const fb = document.getElementById('feedback-juan-total');
         if (val === aq.colaFinalGreco) {
           fb.innerHTML = `<span class="text-emerald-600">✓ ¡Exacto! ${aq.colaFinalGreco} personas (+1 ⭐).</span>`;
@@ -1417,7 +1440,7 @@ class MathApp {
     const btnIvan = document.getElementById('btn-check-ivan-pos');
     if (btnIvan) {
       btnIvan.addEventListener('click', () => {
-        const val = MathUtils.parseNumber(document.getElementById('det-input-ivan-pos')?.value);
+        const val = MathUtils.parseNumber(getInputValue('det-input-ivan-pos'));
         const fb = document.getElementById('feedback-ivan-pos');
         if (val === aq.ivanNuevaPos) {
           fb.innerHTML = `<span class="text-emerald-600">✓ ¡Correcto! Ahora está en el ${aq.ivanNuevaPos}.º lugar (+1 ⭐).</span>`;
@@ -2055,7 +2078,7 @@ class MathApp {
     const btnSave = container.querySelector('#btn-save-diploma-name');
     if (btnSave) {
       btnSave.addEventListener('click', () => {
-        const inputName = container.querySelector('#diploma-input-name')?.value;
+        const inputName = getInputValue('#diploma-input-name', container);
         this.setStudentName(inputName);
         const displayName = container.querySelector('#diploma-display-name');
         if (displayName) displayName.textContent = this.studentName;
