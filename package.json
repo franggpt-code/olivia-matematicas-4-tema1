@@ -1,0 +1,22 @@
+{
+  "name": "olivia-matematicas-4-tema1",
+  "version": "1.0.0",
+  "description": "Aplicación interactiva de práctica para el examen de Matemáticas de 4º de primaria · Tema 1: Números de 5 cifras, redondeo, números romanos y ordinales (Páginas 6 a 9)",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 3000"
+  },
+  "keywords": [
+    "matematicas",
+    "primaria",
+    "4-primaria",
+    "valor-posicional",
+    "redondeo",
+    "numeros-romanos",
+    "ordinales",
+    "santillana",
+    "construyendo-mundos"
+  ],
+  "author": "Fran Guerrero",
+  "license": "MIT"
+}

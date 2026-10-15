@@ -1,0 +1,80 @@
+/* =============================================================================
+   ESTILOS PERSONALIZADOS: MATEMÁTICAS 4.º · TEMA 1
+   Optimizado para iPad, pantallas táctiles, desktop y modo impresión
+   ============================================================================= */
+
+:root {
+  --font-sans: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f8fafc;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Ocultar scrollbar pero permitir scroll fluido en móviles y iPads */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animaciones suaves */
+@keyframes bounceSuccess {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes shakeError {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.animate-success {
+  animation: bounceSuccess 0.5s ease-in-out;
+}
+
+.animate-error {
+  animation: shakeError 0.4s ease-in-out;
+}
+
+/* Estilos de impresión (Para el diploma y la guía resumen) */
+@media print {
+  .no-print,
+  header,
+  nav,
+  #scenario-selector-container,
+  button,
+  footer {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .view-section {
+    display: block !important;
+  }
+
+  /* Ocultar secciones que no sean la activa */
+  .hidden {
+    display: none !important;
+  }
+
+  .shadow-xl, .shadow-2xl, .shadow-sm, .shadow-md {
+    box-shadow: none !important;
+  }
+}

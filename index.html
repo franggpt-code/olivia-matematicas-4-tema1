@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Matemáticas 4.º Primaria · Tema 1 (Páginas 6 a 9) | Entrenador Interactivo</title>
+  <meta name="description" content="Aplicación interactiva de matemáticas para 4.º de primaria: Números de 5 cifras, valor posicional, aproximación y redondeo, números romanos y ordinales. Páginas 6 a 9.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>">
+
+  <!-- Google Fonts con fallback a fuentes del sistema -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS y Estilos -->
+  <link rel="stylesheet" href="css/tailwind.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Confetti para celebraciones -->
+  <script src="js/confetti.min.js"></script>
+</head>
+<body class="flex flex-col min-h-screen text-slate-800 antialiased selection:bg-blue-200">
+
+  <!-- =========================================================================
+       BARRA DE NAVEGACIÓN SUPERIOR
+       ========================================================================= -->
+  <header class="no-print sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      
+      <!-- Logo y Título -->
+      <div class="flex items-center gap-3 cursor-pointer" onclick="app.navigate('home')">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-2xl shadow-md text-white">
+          📐
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-black text-lg md:text-xl font-display text-slate-900 tracking-tight leading-none">
+              Matemáticas 4.º
+            </span>
+            <span class="px-2 py-0.5 bg-blue-100 text-blue-700 rounded-md text-[10px] font-black uppercase tracking-wider">
+              Tema 1
+            </span>
+          </div>
+          <span class="text-xs text-slate-500 font-bold block mt-0.5">
+            Páginas 6 a 9 · Numeración, Redondeo, Romanos y Ordinales
+          </span>
+        </div>
+      </div>
+
+      <!-- Pestañas centrales de acceso rápido (Desktop / Tablet) -->
+      <nav class="hidden xl:flex items-center gap-1 bg-slate-100/90 p-1 rounded-2xl border border-slate-200/60">
+        <button class="nav-tab-btn px-3 py-1.5 rounded-xl text-xs font-black transition" data-target="home">
+          🏠 Inicio
+        </button>
+        <button class="nav-tab-btn px-3 py-1.5 rounded-xl text-xs font-black transition" data-target="base">
+          📝 Misión Base (Mod. B)
+        </button>
+        <button class="nav-tab-btn px-3 py-1.5 rounded-xl text-xs font-black transition" data-target="detective">
+          🔍 Detective (Mod. A)
+        </button>
+        <button class="nav-tab-btn px-3 py-1.5 rounded-xl text-xs font-black transition" data-target="express">
+          ⚡ Desafío Express
+        </button>
+        <button class="nav-tab-btn px-3 py-1.5 rounded-xl text-xs font-black transition" data-target="queue_sim">
+          🚶‍♀️ Simulador Fila
+        </button>
+        <button class="nav-tab-btn px-3 py-1.5 rounded-xl text-xs font-black transition" data-target="arcade">
+          🏛️ Templo Romano
+        </button>
+        <button class="nav-tab-btn px-3 py-1.5 rounded-xl text-xs font-black transition" data-target="study">
+          📚 Chuleta
+        </button>
+      </nav>
+
+      <!-- Panel de Usuario, Sonido y Enlace a Science -->
+      <div class="flex items-center gap-2 md:gap-3">
+        <!-- Estrellas -->
+        <div class="flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 border border-amber-200 rounded-2xl text-amber-900 font-black text-xs md:text-sm shadow-xs" title="Estrellas ganadas">
+          <span class="text-base">⭐</span>
+          <span id="header-stars">0</span>
+        </div>
+
+        <!-- Alumno -->
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-slate-100 rounded-2xl text-slate-700 text-xs font-bold">
+          <span>👋</span>
+          <span id="header-student-name">Olivia</span>
+        </div>
+
+        <!-- Botón de sonido -->
+        <button id="toggle-sound-btn" class="w-10 h-10 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-lg transition shadow-xs" title="Activar/Desactivar sonido">
+          🔊
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Pestañas táctiles para iPad y móviles -->
+    <div class="xl:hidden flex items-center gap-1 px-4 py-2 border-t border-slate-100 overflow-x-auto no-scrollbar bg-slate-50/80 text-xs font-bold">
+      <button class="nav-tab-btn px-3 py-1.5 rounded-xl shrink-0 transition" data-target="home">🏠 Inicio</button>
+      <button class="nav-tab-btn px-3 py-1.5 rounded-xl shrink-0 transition" data-target="base">📝 Misión Base</button>
+      <button class="nav-tab-btn px-3 py-1.5 rounded-xl shrink-0 transition" data-target="detective">🔍 Detective</button>
+      <button class="nav-tab-btn px-3 py-1.5 rounded-xl shrink-0 transition" data-target="express">⚡ Express</button>
+      <button class="nav-tab-btn px-3 py-1.5 rounded-xl shrink-0 transition" data-target="queue_sim">🚶‍♀️ Fila</button>
+      <button class="nav-tab-btn px-3 py-1.5 rounded-xl shrink-0 transition" data-target="arcade">🏛️ Romanos</button>
+      <button class="nav-tab-btn px-3 py-1.5 rounded-xl shrink-0 transition" data-target="study">📚 Chuleta</button>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       CONTENIDO PRINCIPAL
+       ========================================================================= -->
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-6 md:py-8">
+
+    <!-- SELECTOR DE ESCENARIOS Y CASUÍSTICAS DINÁMICAS -->
+    <div id="scenario-selector-container"></div>
+
+    <!-- 1. VISTA: INICIO / PORTADA -->
+    <section id="view-home" class="view-section">
+      <!-- Hero Banner -->
+      <div class="bg-gradient-to-br from-blue-700 via-indigo-700 to-purple-800 text-white rounded-3xl p-6 md:p-10 mb-8 shadow-xl relative overflow-hidden">
+        <div class="max-w-2xl relative z-10">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-white/20 text-white uppercase tracking-wider mb-3 backdrop-blur-xs">
+            ✨ Matemáticas 4.º Primaria · Tema 1
+          </span>
+          <h1 class="text-3xl md:text-5xl font-black font-display tracking-tight text-white mb-4 leading-tight">
+            ¡Hola, Olivia!<br>
+            <span class="text-amber-300">Domina los conceptos</span> del examen
+          </h1>
+          <p class="text-sm md:text-base text-blue-100 font-medium leading-relaxed mb-6">
+            Entrena todos los conceptos del libro (páginas 6 a 9): valor posicional de números de 5 cifras, aproximación y redondeo, números romanos y problemas de números ordinales en filas reales. ¡Con casuísticas variadas y generador aleatorio para no aburrirte nunca!
+          </p>
+
+          <div class="flex items-center gap-3 flex-wrap">
+            <button class="px-6 py-3 bg-white text-blue-700 hover:bg-blue-50 font-black text-sm rounded-2xl shadow-lg transition transform active:scale-95" onclick="app.navigate('base')">
+              🚀 Empezar Misión Base (Pág. 6-7)
+            </button>
+            <button class="px-6 py-3 bg-blue-900/60 hover:bg-blue-900/80 text-white border border-white/20 font-black text-sm rounded-2xl shadow-lg transition" onclick="app.navigate('express')">
+              ⚡ Desafío Rápido de 10 Preguntas
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjetas de Conceptos Clave -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="p-5 bg-white rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center text-2xl mb-3">
+              🧩
+            </div>
+            <h3 class="font-black text-slate-900 text-base mb-1">Valor Posicional</h3>
+            <p class="text-xs text-slate-600">
+              Descomposición en DM, UM, C, D, U y suma de unidades. Lectura y escritura exacta con palabras.
+            </p>
+          </div>
+          <button class="mt-4 text-xs font-black text-purple-600 hover:text-purple-800 flex items-center gap-1" onclick="app.navigate('base')">
+            Practicar ahora ➡️
+          </button>
+        </div>
+
+        <div class="p-5 bg-white rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center text-2xl mb-3">
+              🎯
+            </div>
+            <h3 class="font-black text-slate-900 text-base mb-1">Aproximación y Redondeo</h3>
+            <p class="text-xs text-slate-600">
+              Regla de oro: si la cifra siguiente es 5 o mayor sube; si es menor que 5 se queda igual.
+            </p>
+          </div>
+          <button class="mt-4 text-xs font-black text-blue-600 hover:text-blue-800 flex items-center gap-1" onclick="app.navigate('base')">
+            Completar tabla ➡️
+          </button>
+        </div>
+
+        <div class="p-5 bg-white rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl mb-3">
+              🏛️
+            </div>
+            <h3 class="font-black text-slate-900 text-base mb-1">Números Romanos</h3>
+            <p class="text-xs text-slate-600">
+              I, V, X, L, C, D, M. Reglas de repetición, suma y resta en fechas y monumentos históricos.
+            </p>
+          </div>
+          <button class="mt-4 text-xs font-black text-amber-600 hover:text-amber-800 flex items-center gap-1" onclick="app.navigate('arcade')">
+            Jugar en el Templo ➡️
+          </button>
+        </div>
+
+        <div class="p-5 bg-white rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl mb-3">
+              🚶‍♀️
+            </div>
+            <h3 class="font-black text-slate-900 text-base mb-1">Números Ordinales</h3>
+            <p class="text-xs text-slate-600">
+              Del 1.º al 40.º. Problemas de colas, puestos relativos, avance de turnos y distancias al final.
+            </p>
+          </div>
+          <button class="mt-4 text-xs font-black text-emerald-600 hover:text-emerald-800 flex items-center gap-1" onclick="app.navigate('queue_sim')">
+            Abrir simulador ➡️
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. VISTA: MISIÓN BASE (MODELO B - PÁGINAS 6 Y 7) -->
+    <section id="view-base" class="view-section hidden">
+      <div id="base-mission-content"></div>
+    </section>
+
+    <!-- 3. VISTA: MISIÓN DETECTIVE (MODELO A - PÁGINAS 8 Y 9) -->
+    <section id="view-detective" class="view-section hidden">
+      <div id="detective-mission-content"></div>
+    </section>
+
+    <!-- 4. VISTA: DESAFÍO EXPRESS -->
+    <section id="view-express" class="view-section hidden">
+      <div id="express-content"></div>
+    </section>
+
+    <!-- 5. VISTA: SIMULADOR DE COLA Y ORDINALES -->
+    <section id="view-queue_sim" class="view-section hidden">
+      <div id="queue-sim-content"></div>
+    </section>
+
+    <!-- 6. VISTA: TEMPLO ROMANO ARCADE -->
+    <section id="view-arcade" class="view-section hidden">
+      <div id="arcade-content"></div>
+    </section>
+
+    <!-- 7. VISTA: GUÍA DE ESTUDIO (CHULETA) -->
+    <section id="view-study" class="view-section hidden">
+      <div id="study-guide-content"></div>
+    </section>
+
+    <!-- 8. VISTA: DIPLOMA OFICIAL -->
+    <section id="view-diploma" class="view-section hidden">
+      <div id="diploma-content"></div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       PIE DE PÁGINA
+       ========================================================================= -->
+  <footer class="no-print border-t border-slate-200 bg-white py-6 mt-12 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="text-base">📐</span>
+        <span class="font-bold text-slate-700">Matemáticas 4.º de Primaria</span>
+        <span>· Tema 1 (Páginas 6 a 9)</span>
+      </div>
+      <div>
+        Diseñado con cariño para <strong>Olivia</strong> para sacar un 10 en matemáticas ⭐
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts de la aplicación -->
+  <script src="js/audio.js"></script>
+  <script src="js/math_utils.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
