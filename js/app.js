@@ -1277,16 +1277,16 @@ class MathApp {
           ${[m[0], m[1] || m[0]].map((mon, idx) => `
             <div class="duration-card p-5 rounded-2xl bg-slate-50 border border-slate-200">
               <h4 class="font-black text-slate-900 text-sm mb-2">Edificio ${idx + 1}: ${mon.name}</h4>
-              <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl text-center mb-3">
-                <span class="text-sm font-black font-mono text-amber-900">
-                  ${mon.startRoman} (${mon.startYear}) a ${mon.endRoman} (${mon.endYear})
+              <div class="p-3.5 bg-amber-50 border border-amber-200 rounded-2xl text-center mb-3">
+                <span class="text-base font-black font-mono text-amber-950 tracking-wider">
+                  ${mon.startRoman} <span class="text-xs text-amber-700 font-sans font-bold">a</span> ${mon.endRoman}
                 </span>
               </div>
               <div class="space-y-2 text-xs md:text-sm">
-                <label class="block font-bold text-slate-700">Resta (Año final - Año inicio):</label>
+                <label class="block font-bold text-slate-700">Años que tardaron en construir:</label>
                 <div class="flex items-center gap-2">
                   <input type="text" class="w-28 px-3 py-2 border rounded-xl font-mono text-xs input-duration" data-expected="${mon.duration}" placeholder="N.º de años">
-                  <span class="text-xs text-slate-600">años tardaron</span>
+                  <span class="text-xs text-slate-600 font-bold">años</span>
                   <button class="btn-check-duration px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white font-black text-xs rounded-xl" data-expected="${mon.duration}">✓</button>
                 </div>
                 <div class="feedback-duration text-xs font-bold mt-1"></div>
