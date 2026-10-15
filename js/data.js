@@ -157,6 +157,7 @@ const MathData = {
     },
     {
       id: "toledo_original",
+      hidden: true,
       name: "📖 Toledo (Fiel al Libro de Respuestas Oficial)",
       badge: "Modelo Oficial",
       description: "Los mismos datos y monumentos del libro de evaluación de Santillana (Toledo, 75.787, 983, 34.016, 48.573, Catedral, Sinagoga, Mezquita).",

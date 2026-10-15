@@ -11,7 +11,7 @@ Aplicación web interactiva, pedagógica y lúdica diseñada especialmente para 
      - 🏰 **Aventura 1**: Monumentos y Castillos de Andalucía (Alhambra, Torre del Oro, Mezquita).
      - 🚀 **Aventura 2**: Ciudad de las Ciencias y el Espacio (Planetario, telescopios, observatorios).
      - 🐬 **Aventura 3**: Parque Natural y Reserva de Doñana (Marismas, faros, torres de costa).
-     - 📖 **Aventura 4**: Toledo Oficial (modelo original de Santillana para contrastar).
+     - 📖 **Aventura 4**: Toledo Oficial (oculto de momento para entrenar con casuísticas dinámicas).
      - ✨ **Botón de Generación Aleatoria**: Genera automáticamente datos, descomposiciones, números romanos y colas aleatorias con autocorrección matemática.
 
 2. **📝 Misión Base (Inspirada en Modelo B · Páginas 6 y 7)**

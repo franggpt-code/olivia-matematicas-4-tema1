@@ -155,17 +155,18 @@ class MathApp {
         </div>
 
         <!-- Botones de selección de escenarios predefinidos -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 pt-2 border-t border-blue-200/60">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2 border-t border-blue-200/60">
     `;
 
-    MathData.scenarios.forEach((sc, idx) => {
+    const visibleScenarios = MathData.scenarios.filter(sc => !sc.hidden);
+    visibleScenarios.forEach((sc) => {
       const isSelected = this.scenario.id === sc.id;
       html += `
         <button class="scenario-pill-btn text-left p-3 rounded-2xl border transition text-xs font-bold ${
           isSelected
             ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
             : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50'
-        }" data-index="${idx}">
+        }" data-id="${sc.id}">
           <div class="flex items-center justify-between mb-1">
             <span class="text-[10px] uppercase font-black px-2 py-0.5 rounded-md ${isSelected ? 'bg-blue-800 text-white' : 'bg-slate-100 text-slate-600'}">
               ${sc.badge}
@@ -186,9 +187,10 @@ class MathApp {
 
     // Eventos
     container.querySelectorAll('.scenario-pill-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const idx = parseInt(btn.getAttribute('data-index'), 10);
-        this.setScenario(MathData.scenarios[idx]);
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-id');
+        const sc = MathData.scenarios.find(s => s.id === id);
+        if (sc) this.setScenario(sc);
       });
     });
 
@@ -235,7 +237,7 @@ class MathApp {
         <div class="relative z-10">
           <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
             <span class="px-3 py-1 bg-blue-500/30 border border-blue-400/40 rounded-full text-blue-200 text-xs font-black uppercase tracking-wider">
-              Prueba de Evaluación · Modelo B (Páginas 6 y 7)
+              Prueba de Evaluación (Páginas 6 y 7)
             </span>
             <button class="btn-speak-scenario px-3 py-1 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold transition flex items-center gap-1.5" data-text="${this.scenario.contextLabel}. En 2019: ${v[2019]}. En 2020: ${v[2020]}. En 2021: ${v[2021]}. En 2022: ${v[2022]}">
               <span>🔊 Escuchar datos</span>
@@ -925,7 +927,7 @@ class MathApp {
       <div class="bg-gradient-to-br from-purple-950 via-indigo-900 to-slate-900 text-white rounded-3xl p-6 md:p-8 mb-8 shadow-xl">
         <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
           <span class="px-3 py-1 bg-purple-500/30 border border-purple-400/40 rounded-full text-purple-200 text-xs font-black uppercase tracking-wider">
-            Prueba de Evaluación Avanzada · Modelo A (Páginas 8 y 9)
+            Prueba de Evaluación Avanzada (Páginas 8 y 9)
           </span>
           <button class="btn-voice-read px-3 py-1 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold transition" data-speak="Misión Detective: En este reto resolverás deducciones inversas, rangos de estimación, cálculos con números romanos y problemas de colas dinámicas.">
             🔊 Escuchar instrucciones
