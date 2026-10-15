@@ -236,7 +236,7 @@ class MathApp {
       <div class="bg-gradient-to-br from-indigo-900 via-blue-900 to-slate-900 text-white rounded-3xl p-6 md:p-8 mb-8 shadow-xl relative overflow-hidden">
         <div class="relative z-10">
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
-            <span class="px-3.5 py-1.5 bg-amber-400 text-slate-900 rounded-xl text-xs font-black uppercase tracking-wider shadow-sm">
+            <span class="px-3.5 py-1.5 bg-white text-blue-950 border border-blue-200 rounded-xl text-xs font-black uppercase tracking-wider shadow-sm">
               Prueba de Evaluación · Misión Base
             </span>
             <button class="btn-speak-scenario px-3 py-1 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold transition flex items-center gap-1.5" data-text="${this.scenario.contextLabel}. En 2019: ${v[2019]}. En 2020: ${v[2020]}. En 2021: ${v[2021]}. En 2022: ${v[2022]}">
@@ -248,25 +248,25 @@ class MathApp {
           </h2>
 
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4">
-            <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl text-center">
-              <span class="text-xs text-blue-200 font-bold block mb-1">📅 Año 2019</span>
-              <span class="text-xl md:text-2xl font-black text-amber-300 font-display">${MathUtils.formatNumber(v[2019])}</span>
-              <span class="text-[10px] text-blue-200 block mt-1">visitantes</span>
+            <div class="bg-white text-slate-900 p-4 rounded-2xl text-center shadow-lg border-2 border-amber-200">
+              <span class="text-xs font-black text-amber-800 uppercase tracking-wide block mb-1">📅 Año 2019</span>
+              <span class="text-2xl md:text-3xl font-black text-slate-900 font-display">${MathUtils.formatNumber(v[2019])}</span>
+              <span class="text-xs font-bold text-slate-500 block mt-1">visitantes</span>
             </div>
-            <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl text-center">
-              <span class="text-xs text-blue-200 font-bold block mb-1">📅 Año 2020</span>
-              <span class="text-xl md:text-2xl font-black text-emerald-300 font-display">${MathUtils.formatNumber(v[2020])}</span>
-              <span class="text-[10px] text-blue-200 block mt-1">visitantes</span>
+            <div class="bg-white text-slate-900 p-4 rounded-2xl text-center shadow-lg border-2 border-emerald-200">
+              <span class="text-xs font-black text-emerald-800 uppercase tracking-wide block mb-1">📅 Año 2020</span>
+              <span class="text-2xl md:text-3xl font-black text-slate-900 font-display">${MathUtils.formatNumber(v[2020])}</span>
+              <span class="text-xs font-bold text-slate-500 block mt-1">visitantes</span>
             </div>
-            <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl text-center">
-              <span class="text-xs text-blue-200 font-bold block mb-1">📅 Año 2021</span>
-              <span class="text-xl md:text-2xl font-black text-cyan-300 font-display">${MathUtils.formatNumber(v[2021])}</span>
-              <span class="text-[10px] text-blue-200 block mt-1">visitantes</span>
+            <div class="bg-white text-slate-900 p-4 rounded-2xl text-center shadow-lg border-2 border-cyan-200">
+              <span class="text-xs font-black text-cyan-800 uppercase tracking-wide block mb-1">📅 Año 2021</span>
+              <span class="text-2xl md:text-3xl font-black text-slate-900 font-display">${MathUtils.formatNumber(v[2021])}</span>
+              <span class="text-xs font-bold text-slate-500 block mt-1">visitantes</span>
             </div>
-            <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl text-center">
-              <span class="text-xs text-blue-200 font-bold block mb-1">📅 Año 2022</span>
-              <span class="text-xl md:text-2xl font-black text-purple-300 font-display">${MathUtils.formatNumber(v[2022])}</span>
-              <span class="text-[10px] text-blue-200 block mt-1">visitantes</span>
+            <div class="bg-white text-slate-900 p-4 rounded-2xl text-center shadow-lg border-2 border-purple-200">
+              <span class="text-xs font-black text-purple-800 uppercase tracking-wide block mb-1">📅 Año 2022</span>
+              <span class="text-2xl md:text-3xl font-black text-slate-900 font-display">${MathUtils.formatNumber(v[2022])}</span>
+              <span class="text-xs font-bold text-slate-500 block mt-1">visitantes</span>
             </div>
           </div>
         </div>
@@ -984,11 +984,11 @@ class MathApp {
     const dec2022 = MathUtils.decompose(v[2022]);
 
     let html = `
-      <!-- Cabecera de datos contextuales de Detective (idéntica a Misión Base para no perder la referencia) -->
+      <!-- Cabecera de datos contextuales de Detective -->
       <div class="bg-gradient-to-br from-purple-950 via-indigo-900 to-slate-900 text-white rounded-3xl p-6 md:p-8 mb-8 shadow-xl relative overflow-hidden">
         <div class="relative z-10">
           <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
-            <span class="px-3.5 py-1.5 bg-amber-400 text-slate-900 rounded-xl text-xs font-black uppercase tracking-wider shadow-sm">
+            <span class="px-3.5 py-1.5 bg-white text-purple-950 border border-purple-200 rounded-xl text-xs font-black uppercase tracking-wider shadow-sm">
               Prueba de Evaluación Avanzada · Misión Detective
             </span>
             <button class="btn-voice-read px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold transition flex items-center gap-1.5" data-speak="${this.scenario.contextLabel}. En 2019: ${v[2019]}. En 2020: ${v[2020]}. En 2021: ${v[2021]}. En 2022: ${v[2022]}. Utiliza estos datos para resolver los enigmas de abajo.">
@@ -1000,25 +1000,25 @@ class MathApp {
           </h2>
 
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4">
-            <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl text-center">
-              <span class="text-xs text-purple-200 font-bold block mb-1">📅 Año 2019</span>
-              <span class="text-xl md:text-2xl font-black text-amber-300 font-display">${MathUtils.formatNumber(v[2019])}</span>
-              <span class="text-[10px] text-purple-200 block mt-1">visitantes</span>
+            <div class="bg-white text-slate-900 p-4 rounded-2xl text-center shadow-lg border-2 border-purple-200">
+              <span class="text-xs font-black text-purple-800 uppercase tracking-wide block mb-1">📅 Año 2019</span>
+              <span class="text-2xl md:text-3xl font-black text-slate-900 font-display">${MathUtils.formatNumber(v[2019])}</span>
+              <span class="text-xs font-bold text-slate-500 block mt-1">visitantes</span>
             </div>
-            <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl text-center">
-              <span class="text-xs text-purple-200 font-bold block mb-1">📅 Año 2020</span>
-              <span class="text-xl md:text-2xl font-black text-emerald-300 font-display">${MathUtils.formatNumber(v[2020])}</span>
-              <span class="text-[10px] text-purple-200 block mt-1">visitantes</span>
+            <div class="bg-white text-slate-900 p-4 rounded-2xl text-center shadow-lg border-2 border-emerald-200">
+              <span class="text-xs font-black text-emerald-800 uppercase tracking-wide block mb-1">📅 Año 2020</span>
+              <span class="text-2xl md:text-3xl font-black text-slate-900 font-display">${MathUtils.formatNumber(v[2020])}</span>
+              <span class="text-xs font-bold text-slate-500 block mt-1">visitantes</span>
             </div>
-            <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl text-center">
-              <span class="text-xs text-purple-200 font-bold block mb-1">📅 Año 2021</span>
-              <span class="text-xl md:text-2xl font-black text-cyan-300 font-display">${MathUtils.formatNumber(v[2021])}</span>
-              <span class="text-[10px] text-purple-200 block mt-1">visitantes</span>
+            <div class="bg-white text-slate-900 p-4 rounded-2xl text-center shadow-lg border-2 border-blue-200">
+              <span class="text-xs font-black text-blue-800 uppercase tracking-wide block mb-1">📅 Año 2021</span>
+              <span class="text-2xl md:text-3xl font-black text-slate-900 font-display">${MathUtils.formatNumber(v[2021])}</span>
+              <span class="text-xs font-bold text-slate-500 block mt-1">visitantes</span>
             </div>
-            <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl text-center">
-              <span class="text-xs text-purple-200 font-bold block mb-1">📅 Año 2022</span>
-              <span class="text-xl md:text-2xl font-black text-purple-300 font-display">${MathUtils.formatNumber(v[2022])}</span>
-              <span class="text-[10px] text-purple-200 block mt-1">visitantes</span>
+            <div class="bg-white text-slate-900 p-4 rounded-2xl text-center shadow-lg border-2 border-indigo-200">
+              <span class="text-xs font-black text-indigo-800 uppercase tracking-wide block mb-1">📅 Año 2022</span>
+              <span class="text-2xl md:text-3xl font-black text-slate-900 font-display">${MathUtils.formatNumber(v[2022])}</span>
+              <span class="text-xs font-bold text-slate-500 block mt-1">visitantes</span>
             </div>
           </div>
         </div>
