@@ -616,7 +616,7 @@ class MathApp {
               Alba está <strong>${q.albaOffset} lugares por detrás</strong> de Miguel, que está en el <strong>${MathUtils.getOrdinal(q.miguelPos).num} lugar</strong> (${MathUtils.getOrdinal(q.miguelPos).word}). ¿En qué posición está Alba?
             </span>
             <div class="flex items-center gap-3 flex-wrap">
-              <span class="text-xs text-slate-600">Operación: ${q.miguelPos} + ${q.albaOffset} =</span>
+              <span class="text-xs text-slate-600 font-bold">Posición de Alba:</span>
               <input type="text" id="input-ord-alba" class="w-24 px-3 py-1.5 border rounded-xl font-bold text-xs" placeholder="Ej: 15.º">
               <button id="btn-check-ord-alba" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-xl">✓ Comprobar</button>
               <span id="feedback-ord-alba" class="text-xs font-bold"></span>
@@ -629,7 +629,7 @@ class MathApp {
               Félix es el último de la cola (${q.total}.º). ¿Cuántos lugares <strong>por delante de él</strong> está Alba (que está en el ${q.albaPos}.º lugar)?
             </span>
             <div class="flex items-center gap-3 flex-wrap">
-              <span class="text-xs text-slate-600">Operación: ${q.total} - ${q.albaPos} =</span>
+              <span class="text-xs text-slate-600 font-bold">Lugares por delante:</span>
               <input type="text" id="input-ord-felix" class="w-24 px-3 py-1.5 border rounded-xl font-bold text-xs" placeholder="N.º lugares">
               <span class="text-xs text-slate-600">lugares por delante</span>
               <button id="btn-check-ord-felix" class="px-4 py-1.5 bg-purple-600 hover:bg-purple-700 text-white font-black text-xs rounded-xl">✓ Comprobar</button>
@@ -685,19 +685,58 @@ class MathApp {
         const val = v[year];
         const dec = MathUtils.decompose(val);
 
-        const inOrders = getInputValue(`input-base-orders-${year}`);
-        const inValues = getInputValue(`input-base-values-${year}`);
-        const inWords  = getInputValue(`input-base-words-${year}`);
+        const elOrders = document.getElementById(`input-base-orders-${year}`);
+        const elValues = document.getElementById(`input-base-values-${year}`);
+        const elWords  = document.getElementById(`input-base-words-${year}`);
+
+        const inOrders = elOrders ? elOrders.value : '';
+        const inValues = elValues ? elValues.value : '';
+        const inWords  = elWords ? elWords.value : '';
         const fb = document.getElementById(`feedback-ex1-${year}`);
 
-        // Verificaciones
-        const okOrders = MathUtils.isAnswerCorrect(inOrders, [dec.orderText, dec.orderTextFull]);
-        const okValues = MathUtils.isAnswerCorrect(inValues, [dec.valuesText, dec.valuesText.replace(/\./g, '')]);
+        // Verificaciones tolerantes a espacios, mayúsculas y variantes
+        const okOrders = MathUtils.checkOrderDecomposition(inOrders, val);
+        const okValues = MathUtils.checkValuesDecomposition(inValues, val);
         const okWords  = MathUtils.isAnswerCorrect(inWords, [dec.wordsText]);
 
-        if (okOrders || okValues || okWords) {
+        // Feedback visual en cada campo
+        if (elOrders && inOrders) {
+          if (okOrders) {
+            elOrders.classList.remove('border-rose-400', 'bg-rose-50');
+            elOrders.classList.add('border-emerald-500', 'bg-emerald-50');
+          } else {
+            elOrders.classList.remove('border-emerald-500', 'bg-emerald-50');
+            elOrders.classList.add('border-rose-400', 'bg-rose-50');
+          }
+        }
+        if (elValues && inValues) {
+          if (okValues) {
+            elValues.classList.remove('border-rose-400', 'bg-rose-50');
+            elValues.classList.add('border-emerald-500', 'bg-emerald-50');
+          } else {
+            elValues.classList.remove('border-emerald-500', 'bg-emerald-50');
+            elValues.classList.add('border-rose-400', 'bg-rose-50');
+          }
+        }
+        if (elWords && inWords) {
+          if (okWords) {
+            elWords.classList.remove('border-rose-400', 'bg-rose-50');
+            elWords.classList.add('border-emerald-500', 'bg-emerald-50');
+          } else {
+            elWords.classList.remove('border-emerald-500', 'bg-emerald-50');
+            elWords.classList.add('border-rose-400', 'bg-rose-50');
+          }
+        }
+
+        const hits = (okOrders ? 1 : 0) + (okValues ? 1 : 0) + (okWords ? 1 : 0);
+
+        if (hits === 3) {
+          this.addStars(2);
+          fb.innerHTML = `<span class="text-emerald-600">🎉 ¡Excelente! Los 3 apartados están correctos (+2 ⭐).</span>`;
+          if (window.sound) sound.playSuperCorrect();
+        } else if (hits > 0) {
           this.addStars(1);
-          fb.innerHTML = `<span class="text-emerald-600">🎉 ¡Genial! Has acertado conceptos de ${year}.</span>`;
+          fb.innerHTML = `<span class="text-emerald-600">👏 ¡Muy bien! Has acertado ${hits} de 3 apartados (+1 ⭐).</span>`;
           if (window.sound) sound.playCorrect();
         } else {
           fb.innerHTML = `<span class="text-amber-700">💡 Revisa las respuestas. Puedes pulsar en "Ver chuleta / pistas" arriba.</span>`;
@@ -878,7 +917,8 @@ class MathApp {
     const btnAlba = document.getElementById('btn-check-ord-alba');
     if (btnAlba) {
       btnAlba.addEventListener('click', () => {
-        const val = MathUtils.parseNumber(getInputValue('input-ord-alba'));
+        const raw = getInputValue('input-ord-alba');
+        const val = MathUtils.checkOrdinal(raw, q.albaPos) ? q.albaPos : NaN;
         const fb = document.getElementById('feedback-ord-alba');
         if (val === q.albaPos) {
           fb.innerHTML = `<span class="text-emerald-600">✓ ¡Correcto! ${q.albaPos}.º (${MathUtils.getOrdinal(q.albaPos).femWord}).</span>`;
@@ -893,7 +933,8 @@ class MathApp {
     const btnFelix = document.getElementById('btn-check-ord-felix');
     if (btnFelix) {
       btnFelix.addEventListener('click', () => {
-        const val = MathUtils.parseNumber(getInputValue('input-ord-felix'));
+        const raw = getInputValue('input-ord-felix');
+        const val = MathUtils.checkOrdinal(raw, q.felixAheadOfAlba) ? q.felixAheadOfAlba : NaN;
         const fb = document.getElementById('feedback-ord-felix');
         if (val === q.felixAheadOfAlba) {
           fb.innerHTML = `<span class="text-emerald-600">✓ ¡Correcto! ${q.felixAheadOfAlba} lugares por delante.</span>`;
@@ -1306,14 +1347,26 @@ class MathApp {
         const numVal = MathUtils.parseNumber(getInputValue(`det-num-${cardYear}`));
         const selectedYear = getInputValue(`det-year-${cardYear}`);
         const fb = document.getElementById(`feedback-det-${cardYear}`);
-
         const expectedNum = v[cardYear];
-        if (numVal === expectedNum && selectedYear === cardYear) {
+
+        let okDecomp = true;
+        if (cardYear === '2021') {
+          const inVal = getInputValue('det-val-2021');
+          if (inVal) okDecomp = MathUtils.checkValuesDecomposition(inVal, expectedNum);
+        } else if (cardYear === '2020') {
+          const inOrd = getInputValue('det-ord-2020');
+          if (inOrd) okDecomp = MathUtils.checkOrderDecomposition(inOrd, expectedNum);
+        } else if (cardYear === '2022') {
+          const inOrd = getInputValue('det-ord-2022');
+          if (inOrd) okDecomp = MathUtils.checkOrderDecomposition(inOrd, expectedNum);
+        }
+
+        if (numVal === expectedNum && selectedYear === cardYear && okDecomp) {
           fb.innerHTML = `<span class="text-emerald-600">🎉 ¡Correcto! Año ${cardYear} con ${MathUtils.formatNumber(expectedNum)} (+2 ⭐).</span>`;
           this.addStars(2);
           if (window.sound) sound.playCorrect();
         } else {
-          fb.innerHTML = `<span class="text-rose-600">✕ Revisa el número en cifras y el año correspondiente.</span>`;
+          fb.innerHTML = `<span class="text-rose-600">✕ Revisa el número en cifras, el año o la descomposición.</span>`;
           if (window.sound) sound.playWrong();
         }
       });
@@ -1390,11 +1443,18 @@ class MathApp {
     const btnLast = document.getElementById('btn-check-last-places');
     if (btnLast) {
       btnLast.addEventListener('click', () => {
-        const numA = MathUtils.parseNumber(getInputValue('det-ord-num-a'));
-        const numB = MathUtils.parseNumber(getInputValue('det-ord-num-b'));
+        const rawA = getInputValue('det-ord-num-a');
+        const rawB = getInputValue('det-ord-num-b');
+        const txtA = getInputValue('det-ord-txt-a');
+        const txtB = getInputValue('det-ord-txt-b');
         const fb = document.getElementById('feedback-last-places');
 
-        if (numA === aq.colaA && numB === aq.colaB) {
+        const okA = MathUtils.checkOrdinal(rawA, aq.colaA);
+        const okB = MathUtils.checkOrdinal(rawB, aq.colaB);
+        const okTxtA = txtA ? MathUtils.checkOrdinal(txtA, aq.colaA) : true;
+        const okTxtB = txtB ? MathUtils.checkOrdinal(txtB, aq.colaB) : true;
+
+        if (okA && okB && okTxtA && okTxtB) {
           fb.innerHTML = `<span class="text-emerald-600">✓ ¡Correcto! ${aq.colaA}.º y ${aq.colaB}.º (+2 ⭐).</span>`;
           this.addStars(2);
           if (window.sound) sound.playCorrect();
@@ -1425,9 +1485,9 @@ class MathApp {
     const btnIvan = document.getElementById('btn-check-ivan-pos');
     if (btnIvan) {
       btnIvan.addEventListener('click', () => {
-        const val = MathUtils.parseNumber(getInputValue('det-input-ivan-pos'));
+        const raw = getInputValue('det-input-ivan-pos');
         const fb = document.getElementById('feedback-ivan-pos');
-        if (val === aq.ivanNuevaPos) {
+        if (MathUtils.checkOrdinal(raw, aq.ivanNuevaPos)) {
           fb.innerHTML = `<span class="text-emerald-600">✓ ¡Correcto! Ahora está en el ${aq.ivanNuevaPos}.º lugar (+1 ⭐).</span>`;
           this.addStars(1);
         } else {

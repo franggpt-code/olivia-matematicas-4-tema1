@@ -275,6 +275,7 @@ const MathUtils = {
   isAnswerCorrect(userInput, validAnswers) {
     if (!userInput) return false;
     const cleanUser = this.cleanText(userInput);
+    const compactUser = cleanUser.replace(/\s+/g, '');
     if (!Array.isArray(validAnswers)) {
       validAnswers = [validAnswers];
     }
@@ -284,8 +285,158 @@ const MathUtils = {
         return numUser === ans;
       }
       const cleanExpected = this.cleanText(ans);
-      return cleanUser === cleanExpected;
+      if (cleanUser === cleanExpected) return true;
+      if (compactUser === cleanExpected.replace(/\s+/g, '')) return true;
+      return false;
     });
+  },
+
+  // Validador tolerante de descomposición por órdenes (DM, UM, C, D, U)
+  // Acepta: "9 C + 4 d + 6 u", "9C+4d+6u", "9c + 4d + 6u", con o sin espacios,
+  // con o sin ceros, en cualquier orden de sumandos, con palabras completas, etc.
+  checkOrderDecomposition(userInput, targetNum) {
+    if (!userInput || !targetNum) return false;
+    const num = (typeof targetNum === 'object') ? targetNum.num : targetNum;
+    const dec = (typeof targetNum === 'object') ? targetNum : this.decompose(num);
+
+    const raw = String(userInput).trim();
+    if (!raw) return false;
+
+    // Normalizar a minúsculas y sin acentos
+    let str = raw.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // Normalizar nombres largos de órdenes a abreviaturas estándar
+    str = str.replace(/decenas?\s+de\s+millar/g, 'dm')
+             .replace(/unidades?\s+de\s+millar/g, 'um')
+             .replace(/centenas?/g, 'c')
+             .replace(/decenas?/g, 'd')
+             .replace(/unidades?/g, 'u');
+
+    // Quitar puntos o comas que separen términos
+    str = str.replace(/\./g, '').replace(/,/g, '+').replace(/\by\b/g, '+');
+
+    // Quitar todos los espacios para comparación directa
+    const compactUser = str.replace(/\s+/g, '');
+    const compactExpected1 = dec.orderText.toLowerCase().replace(/[\.\s]/g, '');
+    const compactExpected2 = dec.orderTextFull.toLowerCase().replace(/[\.\s]/g, '');
+
+    // 1. Coincidencia directa sin espacios (ej. "9c+4d+6u" === "9c+4d+6u")
+    if (compactUser === compactExpected1 || compactUser === compactExpected2) {
+      return true;
+    }
+
+    // 2. Coincidencia matemática y de órdenes tolerante a cualquier orden de sumandos
+    const regex = /(\d+)\s*(dm|um|c|d|u)/g;
+    const foundOrders = {};
+    let match;
+    let tokenCount = 0;
+
+    while ((match = regex.exec(str)) !== null) {
+      tokenCount++;
+      const val = parseInt(match[1], 10);
+      const ord = match[2];
+      foundOrders[ord] = (foundOrders[ord] || 0) + val;
+    }
+
+    if (tokenCount > 0) {
+      const expectedDigits = {
+        dm: dec.dm,
+        um: dec.um,
+        c: dec.c,
+        d: dec.d,
+        u: dec.u
+      };
+
+      const ordersList = ['dm', 'um', 'c', 'd', 'u'];
+      for (let i = 0; i < ordersList.length; i++) {
+        const ord = ordersList[i];
+        const userOrdVal = foundOrders[ord] || 0;
+        const expVal = expectedDigits[ord] || 0;
+        if (userOrdVal !== expVal) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    return false;
+  },
+
+  // Validador tolerante de descomposición en suma de valores (unidades)
+  // Acepta: "900 + 40 + 6", "900+40+6", "30.000 + 4.000 + 10 + 6", "30000+4000+10+6", etc.
+  checkValuesDecomposition(userInput, targetNum) {
+    if (!userInput || !targetNum) return false;
+    const num = (typeof targetNum === 'object') ? targetNum.num : targetNum;
+    const dec = (typeof targetNum === 'object') ? targetNum : this.decompose(num);
+
+    const raw = String(userInput).trim();
+    if (!raw) return false;
+
+    // Quitar puntos de miles y todos los espacios
+    const compactUser = raw.replace(/\./g, '').replace(/\s+/g, '');
+    const compactExpected = dec.valuesText.replace(/\./g, '').replace(/\s+/g, '');
+
+    // 1. Coincidencia directa sin espacios ni puntos
+    if (compactUser === compactExpected) {
+      return true;
+    }
+
+    // 2. Coincidencia matemática por sumandos
+    const rawTokens = raw.replace(/\./g, '').split(/[+,]/);
+    const parts = [];
+    for (let i = 0; i < rawTokens.length; i++) {
+      const parsed = parseInt(rawTokens[i].trim(), 10);
+      if (!isNaN(parsed) && parsed > 0) {
+        parts.push(parsed);
+      }
+    }
+
+    if (parts.length === 0) return false;
+
+    const sum = parts.reduce((acc, v) => acc + v, 0);
+    if (sum !== num) return false;
+
+    const expectedValues = [
+      dec.dm * 10000,
+      dec.um * 1000,
+      dec.c * 100,
+      dec.d * 10,
+      dec.u
+    ].filter(v => v > 0);
+
+    if (parts.length !== expectedValues.length) return false;
+
+    const sortedParts = parts.slice().sort((a, b) => b - a);
+    const sortedExpected = expectedValues.slice().sort((a, b) => b - a);
+
+    for (let i = 0; i < sortedParts.length; i++) {
+      if (sortedParts[i] !== sortedExpected[i]) return false;
+    }
+
+    return true;
+  },
+
+  // Validador tolerante de ordinales (tanto en cifras como en letras)
+  checkOrdinal(userInput, expectedPos) {
+    if (!userInput || !expectedPos) return false;
+    const cleanUser = this.cleanText(userInput);
+    const numVal = this.parseNumber(userInput);
+
+    if (!isNaN(numVal) && numVal === expectedPos) {
+      return true;
+    }
+
+    const ord = this.getOrdinal(expectedPos);
+    const validWords = [
+      ord.word,
+      ord.femWord,
+      ord.alt,
+      ord.altFem,
+      ord.num,
+      ord.femNum
+    ].filter(Boolean);
+
+    return this.isAnswerCorrect(userInput, validWords);
   },
 
   // ---------------------------------------------------------------------------
