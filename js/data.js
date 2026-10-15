@@ -71,7 +71,7 @@ const MathData = {
         2022: 64192
       },
       monuments: [
-        { name: "Primer Telescopio de Galileo", startYear: 1609, endYear: 1610, startRoman: "MDCX", endRoman: "MDCX", duration: 1 },
+        { name: "Primer Telescopio de Galileo", startYear: 1609, endYear: 1610, startRoman: "MDCIX", endRoman: "MDCX", duration: 1 },
         { name: "Gran Cúpula Astronómica", startYear: 1982, endYear: 1995, startRoman: "MCMLXXXII", endRoman: "MCMXCV", duration: 13 },
         { name: "Observatorio Real", startYear: 1790, endYear: 1808, startRoman: "MDCCXC", endRoman: "MDCCCVIII", duration: 18 }
       ],

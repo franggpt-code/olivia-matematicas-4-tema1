@@ -10,12 +10,13 @@ const MathUtils = {
     return Number(n).toLocaleString('es-ES');
   },
 
-  // Parsea un string con puntos a número entero
+  // Parsea un string con puntos a número entero (tolerante a palabras adicionales como 'años')
   parseNumber(str) {
     if (typeof str === 'number') return str;
     if (!str) return NaN;
-    const clean = String(str).replace(/\./g, '').replace(/\s/g, '').trim();
-    return parseInt(clean, 10);
+    const clean = String(str).replace(/\./g, '').trim();
+    const match = clean.match(/-?\d+/);
+    return match ? parseInt(match[0], 10) : NaN;
   },
 
   // ---------------------------------------------------------------------------

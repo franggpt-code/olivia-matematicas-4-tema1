@@ -558,7 +558,7 @@ class MathApp {
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           ${m.map((mon, idx) => `
-            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+            <div class="monument-card p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
               <div>
                 <span class="text-xs font-bold text-slate-500 uppercase block mb-1">Monumento ${idx + 1}</span>
                 <h4 class="font-black text-slate-900 text-sm mb-2">${mon.name}</h4>
@@ -896,19 +896,38 @@ class MathApp {
     document.querySelectorAll('.btn-check-roman-single').forEach(btn => {
       btn.addEventListener('click', () => {
         const expected = parseInt(btn.getAttribute('data-expected'), 10);
-        const card = btn.closest('div');
-        const input = card.querySelector('.input-roman');
-        const fb = card.querySelector('.feedback-roman-single');
+        const card = btn.closest('.monument-card') || btn.closest('.p-5') || btn.parentElement.parentElement;
+        const input = card ? card.querySelector('.input-roman') : null;
+        const fb = card ? card.querySelector('.feedback-roman-single') : null;
+        if (!input || !fb) return;
+
         const userVal = MathUtils.parseNumber(input.value);
 
         if (userVal === expected) {
-          input.classList.add('border-emerald-400', 'bg-emerald-50');
+          input.classList.remove('border-rose-400', 'bg-rose-50');
+          input.classList.add('border-emerald-500', 'bg-emerald-50');
           fb.innerHTML = `<span class="text-emerald-600">✓ ¡Correcto! Año ${expected}.</span>`;
           this.addStars(1);
+          if (window.sound) sound.playCorrect();
         } else {
+          input.classList.remove('border-emerald-500', 'bg-emerald-50');
           input.classList.add('border-rose-400', 'bg-rose-50');
-          fb.innerHTML = `<span class="text-rose-600">✕ Inténtalo de nuevo.</span>`;
+          if (isNaN(userVal) && MathUtils.romanToInt(input.value) === expected) {
+            fb.innerHTML = `<span class="text-amber-600">⚠️ Has escrito en romano. Escribe el año en cifras arábigas (ej: ${expected}).</span>`;
+          } else {
+            fb.innerHTML = `<span class="text-rose-600">✕ Inténtalo de nuevo.</span>`;
+          }
           if (window.sound) sound.playWrong();
+        }
+      });
+    });
+
+    document.querySelectorAll('.input-roman').forEach(inp => {
+      inp.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const card = inp.closest('.monument-card') || inp.closest('.p-5') || inp.parentElement.parentElement;
+          const btn = card ? card.querySelector('.btn-check-roman-single') : null;
+          if (btn) btn.click();
         }
       });
     });
@@ -1224,7 +1243,7 @@ class MathApp {
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           ${[m[0], m[1] || m[0]].map((mon, idx) => `
-            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+            <div class="duration-card p-5 rounded-2xl bg-slate-50 border border-slate-200">
               <h4 class="font-black text-slate-900 text-sm mb-2">Edificio ${idx + 1}: ${mon.name}</h4>
               <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl text-center mb-3">
                 <span class="text-sm font-black font-mono text-amber-900">
@@ -1422,19 +1441,34 @@ class MathApp {
     document.querySelectorAll('.btn-check-duration').forEach(btn => {
       btn.addEventListener('click', () => {
         const expected = parseInt(btn.getAttribute('data-expected'), 10);
-        const card = btn.closest('div');
-        const input = card.querySelector('.input-duration');
-        const fb = card.querySelector('.feedback-duration');
+        const card = btn.closest('.duration-card') || btn.closest('.p-5') || btn.parentElement.parentElement;
+        const input = card ? card.querySelector('.input-duration') : null;
+        const fb = card ? card.querySelector('.feedback-duration') : null;
+        if (!input || !fb) return;
+
         const userVal = MathUtils.parseNumber(input.value);
 
         if (userVal === expected) {
-          input.classList.add('border-emerald-400', 'bg-emerald-50');
+          input.classList.remove('border-rose-400', 'bg-rose-50');
+          input.classList.add('border-emerald-500', 'bg-emerald-50');
           fb.innerHTML = `<span class="text-emerald-600">✓ ¡Exacto! Tardaron ${expected} años.</span>`;
           this.addStars(1);
+          if (window.sound) sound.playCorrect();
         } else {
+          input.classList.remove('border-emerald-500', 'bg-emerald-50');
           input.classList.add('border-rose-400', 'bg-rose-50');
           fb.innerHTML = `<span class="text-rose-600">✕ Revisa la resta entre los años.</span>`;
           if (window.sound) sound.playWrong();
+        }
+      });
+    });
+
+    document.querySelectorAll('.input-duration').forEach(inp => {
+      inp.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const card = inp.closest('.duration-card') || inp.closest('.p-5') || inp.parentElement.parentElement;
+          const btn = card ? card.querySelector('.btn-check-duration') : null;
+          if (btn) btn.click();
         }
       });
     });
