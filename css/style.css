@@ -17,6 +17,11 @@
   -webkit-box-sizing: border-box;
 }
 
+html {
+  font-size: 18px; /* Escala base aumentada para lectura clara y cómoda en 4.º de Primaria */
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   font-family: var(--font-sans);
   background-color: #f8fafc;
@@ -27,6 +32,8 @@ body {
   -webkit-tap-highlight-color: transparent;
   margin: 0;
   padding: 0;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .font-display {
@@ -79,6 +86,47 @@ body {
 .space-y-4 > * + * { margin-top: 1rem !important; margin-bottom: 0 !important; }
 .space-y-6 > * + * { margin-top: 1.5rem !important; margin-bottom: 0 !important; }
 .space-y-8 > * + * { margin-top: 2rem !important; margin-bottom: 0 !important; }
+
+/* =============================================================================
+   ESCALA TIPOGRÁFICA Y LEGIBILIDAD ESCOLAR (4.º DE PRIMARIA)
+   Letras más grandes, cómodas y nítidas para lectura y cálculo
+   ============================================================================= */
+.text-xs {
+  font-size: 0.85rem !important;
+  line-height: 1.35rem !important;
+}
+
+.text-sm {
+  font-size: 0.95rem !important;
+  line-height: 1.45rem !important;
+}
+
+.text-base {
+  font-size: 1.05rem !important;
+  line-height: 1.6rem !important;
+}
+
+.text-\[10px\] {
+  font-size: 0.75rem !important;
+  line-height: 1.15rem !important;
+}
+
+.text-\[11px\] {
+  font-size: 0.8rem !important;
+  line-height: 1.2rem !important;
+}
+
+/* Tipografía amplia y clara para inputs y desplegables */
+input[type="text"],
+input[type="number"],
+select {
+  font-size: 1rem !important;
+}
+
+/* Pestañas de navegación más legibles */
+.nav-tab-btn {
+  font-size: 0.875rem !important;
+}
 
 /* =============================================================================
    OPTIMIZACIONES TÁCTILES Y DE ENTRADA PARA IPAD (iOS 12.5.8)
