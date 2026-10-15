@@ -295,26 +295,21 @@ class MathApp {
               <button class="btn-peek-hint text-xs font-bold text-blue-600 hover:underline" data-target="hint-2020">💡 Ver chuleta / pistas</button>
             </div>
             <div id="hint-2020" class="hidden text-xs bg-blue-50 text-blue-800 p-3 rounded-xl mb-3 border border-blue-200">
-              📌 <strong>Por órdenes:</strong> ${dec2020.orderText}<br>
-              📌 <strong>En valores:</strong> ${dec2020.valuesText}<br>
-              📌 <strong>Se lee:</strong> ${dec2020.wordsText}
+              📌 <strong>Pista:</strong> Indica cuántas centenas, decenas y unidades tiene (ej: 6 C + 4 D + 2 U). En valores, escribe la suma de unidades (ej: 600 + 40 + 2).
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Descomposición por órdenes:</label>
-                <input type="text" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: ${dec2020.orderText}" id="input-base-orders-2020">
+                <input type="text" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: 6 C + 4 D + 2 U" id="input-base-orders-2020">
               </div>
               <div>
                 <label class="block font-bold text-slate-700 mb-1">En suma de valores (unidades):</label>
-                <input type="text" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: ${dec2020.valuesText}" id="input-base-values-2020">
+                <input type="text" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: 600 + 40 + 2" id="input-base-values-2020">
               </div>
               <div class="md:col-span-2">
                 <label class="block font-bold text-slate-700 mb-1">Se lee (con letras):</label>
-                <div class="flex gap-2">
-                  <input type="text" class="w-full px-3 py-2 border rounded-xl text-xs md:text-sm" placeholder="Escribe aquí con palabras..." id="input-base-words-2020">
-                  <button class="px-3 py-2 bg-slate-200 hover:bg-slate-300 rounded-xl btn-listen-word" data-text="${dec2020.wordsText}" title="Escuchar pronunciación correcta">🔊</button>
-                </div>
+                <input type="text" class="w-full px-3 py-2 border rounded-xl text-xs md:text-sm" placeholder="Escribe aquí con palabras cómo se lee..." id="input-base-words-2020">
               </div>
             </div>
             <div class="mt-3 flex items-center justify-between">
@@ -332,26 +327,21 @@ class MathApp {
               <button class="btn-peek-hint text-xs font-bold text-blue-600 hover:underline" data-target="hint-2021">💡 Ver chuleta / pistas</button>
             </div>
             <div id="hint-2021" class="hidden text-xs bg-blue-50 text-blue-800 p-3 rounded-xl mb-3 border border-blue-200">
-              📌 <strong>Por órdenes:</strong> ${dec2021.orderText}<br>
-              📌 <strong>En valores:</strong> ${dec2021.valuesText}<br>
-              📌 <strong>Se lee:</strong> ${dec2021.wordsText}
+              📌 <strong>Pista:</strong> Empieza por las decenas de millar (DM), luego UM, C, D y U (ej: 5 DM + 2 UM + 8 C + 4 D + 1 U). En suma de valores: 50.000 + 2.000...
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Descomposición por órdenes:</label>
-                <input type="text" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: ${dec2021.orderText}" id="input-base-orders-2021">
+                <input type="text" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: 5 DM + 2 UM + 8 C + 4 D + 1 U" id="input-base-orders-2021">
               </div>
               <div>
                 <label class="block font-bold text-slate-700 mb-1">En suma de valores (unidades):</label>
-                <input type="text" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: ${dec2021.valuesText}" id="input-base-values-2021">
+                <input type="text" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: 50.000 + 2.000 + 800 + 40 + 1" id="input-base-values-2021">
               </div>
               <div class="md:col-span-2">
                 <label class="block font-bold text-slate-700 mb-1">Se lee (con letras):</label>
-                <div class="flex gap-2">
-                  <input type="text" class="w-full px-3 py-2 border rounded-xl text-xs md:text-sm" placeholder="Escribe aquí con palabras..." id="input-base-words-2021">
-                  <button class="px-3 py-2 bg-slate-200 hover:bg-slate-300 rounded-xl btn-listen-word" data-text="${dec2021.wordsText}">🔊</button>
-                </div>
+                <input type="text" class="w-full px-3 py-2 border rounded-xl text-xs md:text-sm" placeholder="Escribe aquí con palabras cómo se lee..." id="input-base-words-2021">
               </div>
             </div>
             <div class="mt-3 flex items-center justify-between">
@@ -369,26 +359,21 @@ class MathApp {
               <button class="btn-peek-hint text-xs font-bold text-blue-600 hover:underline" data-target="hint-2022">💡 Ver chuleta / pistas</button>
             </div>
             <div id="hint-2022" class="hidden text-xs bg-blue-50 text-blue-800 p-3 rounded-xl mb-3 border border-blue-200">
-              📌 <strong>Por órdenes:</strong> ${dec2022.orderText}<br>
-              📌 <strong>En valores:</strong> ${dec2022.valuesText}<br>
-              📌 <strong>Se lee:</strong> ${dec2022.wordsText}
+              📌 <strong>Pista:</strong> Empieza por las decenas de millar (DM), luego UM, C, D y U (ej: 7 DM + 3 UM + 4 C + 5 D + 2 U). En suma de valores: 70.000 + 3.000...
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Descomposición por órdenes:</label>
-                <input type="text" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: ${dec2022.orderText}" id="input-base-orders-2022">
+                <input type="text" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: 7 DM + 3 UM + 4 C + 5 D + 2 U" id="input-base-orders-2022">
               </div>
               <div>
                 <label class="block font-bold text-slate-700 mb-1">En suma de valores (unidades):</label>
-                <input type="text" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: ${dec2022.valuesText}" id="input-base-values-2022">
+                <input type="text" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: 70.000 + 3.000 + 400 + 50 + 2" id="input-base-values-2022">
               </div>
               <div class="md:col-span-2">
                 <label class="block font-bold text-slate-700 mb-1">Se lee (con letras):</label>
-                <div class="flex gap-2">
-                  <input type="text" class="w-full px-3 py-2 border rounded-xl text-xs md:text-sm" placeholder="Escribe aquí con palabras..." id="input-base-words-2022">
-                  <button class="px-3 py-2 bg-slate-200 hover:bg-slate-300 rounded-xl btn-listen-word" data-text="${dec2022.wordsText}">🔊</button>
-                </div>
+                <input type="text" class="w-full px-3 py-2 border rounded-xl text-xs md:text-sm" placeholder="Escribe aquí con palabras cómo se lee..." id="input-base-words-2022">
               </div>
             </div>
             <div class="mt-3 flex items-center justify-between">
@@ -508,13 +493,13 @@ class MathApp {
                       <span class="text-xs text-blue-600 font-black font-mono">${MathUtils.formatNumber(val)}</span>
                     </td>
                     <td class="p-2.5 bg-purple-50/30">
-                      <input type="text" class="w-full px-2.5 py-1.5 border rounded-lg font-mono text-xs input-round" data-year="${year}" data-order="UM" placeholder="Ej: ${MathUtils.formatNumber(MathUtils.roundNumber(val, 'UM'))}">
+                      <input type="text" class="w-full px-2.5 py-1.5 border rounded-lg font-mono text-xs input-round" data-year="${year}" data-order="UM" placeholder="A millares">
                     </td>
                     <td class="p-2.5 bg-blue-50/30">
-                      <input type="text" class="w-full px-2.5 py-1.5 border rounded-lg font-mono text-xs input-round" data-year="${year}" data-order="C" placeholder="Ej: ${MathUtils.formatNumber(MathUtils.roundNumber(val, 'C'))}">
+                      <input type="text" class="w-full px-2.5 py-1.5 border rounded-lg font-mono text-xs input-round" data-year="${year}" data-order="C" placeholder="A centenas">
                     </td>
                     <td class="p-2.5 bg-emerald-50/30">
-                      <input type="text" class="w-full px-2.5 py-1.5 border rounded-lg font-mono text-xs input-round" data-year="${year}" data-order="D" placeholder="Ej: ${MathUtils.formatNumber(MathUtils.roundNumber(val, 'D'))}">
+                      <input type="text" class="w-full px-2.5 py-1.5 border rounded-lg font-mono text-xs input-round" data-year="${year}" data-order="D" placeholder="A decenas">
                     </td>
                   </tr>
                 `;
@@ -582,7 +567,7 @@ class MathApp {
               <div>
                 <label class="block text-xs font-bold text-slate-700 mb-1">Año en números arábigos:</label>
                 <div class="flex gap-2">
-                  <input type="text" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm input-roman" data-expected="${mon.startYear}" placeholder="Ej: ${mon.startYear}">
+                  <input type="text" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm input-roman" data-expected="${mon.startYear}" placeholder="Ej: 1492">
                   <button class="btn-check-roman-single px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-xl" data-expected="${mon.startYear}">✓</button>
                 </div>
                 <div class="feedback-roman-single text-xs font-bold mt-1"></div>
@@ -630,7 +615,7 @@ class MathApp {
             </span>
             <div class="flex items-center gap-3 flex-wrap">
               <span class="text-xs text-slate-600">Operación: ${q.miguelPos} + ${q.albaOffset} =</span>
-              <input type="text" id="input-ord-alba" class="w-24 px-3 py-1.5 border rounded-xl font-bold text-xs" placeholder="Ej: ${q.albaPos}.º">
+              <input type="text" id="input-ord-alba" class="w-24 px-3 py-1.5 border rounded-xl font-bold text-xs" placeholder="Ej: 15.º">
               <button id="btn-check-ord-alba" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-xl">✓ Comprobar</button>
               <span id="feedback-ord-alba" class="text-xs font-bold"></span>
             </div>
@@ -643,7 +628,7 @@ class MathApp {
             </span>
             <div class="flex items-center gap-3 flex-wrap">
               <span class="text-xs text-slate-600">Operación: ${q.total} - ${q.albaPos} =</span>
-              <input type="text" id="input-ord-felix" class="w-24 px-3 py-1.5 border rounded-xl font-bold text-xs" placeholder="Ej: ${q.felixAheadOfAlba}">
+              <input type="text" id="input-ord-felix" class="w-24 px-3 py-1.5 border rounded-xl font-bold text-xs" placeholder="N.º lugares">
               <span class="text-xs text-slate-600">lugares por delante</span>
               <button id="btn-check-ord-felix" class="px-4 py-1.5 bg-purple-600 hover:bg-purple-700 text-white font-black text-xs rounded-xl">✓ Comprobar</button>
               <span id="feedback-ord-felix" class="text-xs font-bold"></span>
@@ -981,11 +966,11 @@ class MathApp {
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs md:text-sm mb-3">
               <div>
                 <label class="block font-bold text-slate-700 mb-1">En unidades:</label>
-                <input type="text" id="det-val-2021" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Ej: ${dec2021.valuesText}">
+                <input type="text" id="det-val-2021" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Ej: 40.000 + 2.000 + 500 + 30 + 1">
               </div>
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Número en cifras:</label>
-                <input type="text" id="det-num-2021" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Ej: ${MathUtils.formatNumber(v[2021])}">
+                <input type="text" id="det-num-2021" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Número en cifras">
               </div>
               <div>
                 <label class="block font-bold text-slate-700 mb-1">¿Qué año es?</label>
@@ -1015,11 +1000,11 @@ class MathApp {
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs md:text-sm mb-3">
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Por órdenes:</label>
-                <input type="text" id="det-ord-2020" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Ej: ${dec2020.orderText}">
+                <input type="text" id="det-ord-2020" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Ej: 6 C + 4 D + 2 U">
               </div>
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Número en cifras:</label>
-                <input type="text" id="det-num-2020" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Ej: ${v[2020]}">
+                <input type="text" id="det-num-2020" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Número en cifras">
               </div>
               <div>
                 <label class="block font-bold text-slate-700 mb-1">¿Qué año es?</label>
@@ -1049,11 +1034,11 @@ class MathApp {
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs md:text-sm mb-3">
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Por órdenes:</label>
-                <input type="text" id="det-ord-2022" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Ej: ${dec2022.orderText}">
+                <input type="text" id="det-ord-2022" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Ej: 7 DM + 3 UM + 4 C + 5 D + 2 U">
               </div>
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Número en cifras:</label>
-                <input type="text" id="det-num-2022" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Ej: ${MathUtils.formatNumber(v[2022])}">
+                <input type="text" id="det-num-2022" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Número en cifras">
               </div>
               <div>
                 <label class="block font-bold text-slate-700 mb-1">¿Qué año es?</label>
@@ -1126,7 +1111,7 @@ class MathApp {
           </p>
           <div class="flex items-center gap-3 flex-wrap">
             <span class="text-xs text-slate-600 font-bold">Propón un número válido:</span>
-            <input type="text" id="det-input-range-2018" class="px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: entre ${MathUtils.formatNumber(v[2022])} y ${MathUtils.formatNumber(v[2019])}">
+            <input type="text" id="det-input-range-2018" class="px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Escribe un número válido">
             <button id="btn-check-range-2018" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-black text-xs rounded-xl">
               ✓ Comprobar número
             </button>
@@ -1160,13 +1145,11 @@ class MathApp {
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div class="p-3 bg-white rounded-xl border border-indigo-200">
               <label class="block text-xs font-bold text-slate-700 mb-1">Número menor que ${MathUtils.formatNumber(approxVal)}:</label>
-              <input type="text" id="det-approx-lower" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: ${MathUtils.formatNumber(approxVal - 1500)}">
-              <span class="text-[10px] text-slate-400 block mt-1">Debe estar entre ${MathUtils.formatNumber(approxVal - 5000)} y ${MathUtils.formatNumber(approxVal - 1)}</span>
+              <input type="text" id="det-approx-lower" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Escribe un número menor">
             </div>
             <div class="p-3 bg-white rounded-xl border border-indigo-200">
               <label class="block text-xs font-bold text-slate-700 mb-1">Número mayor que ${MathUtils.formatNumber(approxVal)}:</label>
-              <input type="text" id="det-approx-higher" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Ej: ${MathUtils.formatNumber(approxVal + 1500)}">
-              <span class="text-[10px] text-slate-400 block mt-1">Debe estar entre ${MathUtils.formatNumber(approxVal + 1)} y ${MathUtils.formatNumber(approxVal + 4999)}</span>
+              <input type="text" id="det-approx-higher" class="w-full px-3 py-2 border rounded-xl font-mono text-xs md:text-sm" placeholder="Escribe un número mayor">
             </div>
           </div>
 
@@ -1208,7 +1191,7 @@ class MathApp {
               <div class="space-y-2 text-xs md:text-sm">
                 <label class="block font-bold text-slate-700">Resta (Año final - Año inicio):</label>
                 <div class="flex items-center gap-2">
-                  <input type="text" class="w-28 px-3 py-2 border rounded-xl font-mono text-xs input-duration" data-expected="${mon.duration}" placeholder="Ej: ${mon.duration}">
+                  <input type="text" class="w-28 px-3 py-2 border rounded-xl font-mono text-xs input-duration" data-expected="${mon.duration}" placeholder="N.º de años">
                   <span class="text-xs text-slate-600">años tardaron</span>
                   <button class="btn-check-duration px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white font-black text-xs rounded-xl" data-expected="${mon.duration}">✓</button>
                 </div>
@@ -1246,15 +1229,15 @@ class MathApp {
               <div class="p-4 bg-white rounded-xl border border-slate-200">
                 <span class="font-bold text-blue-700 block mb-2">${this.scenario.museumA} (${aq.colaA} personas):</span>
                 <div class="space-y-2">
-                  <input type="text" id="det-ord-num-a" class="w-full px-3 py-2 border rounded-xl text-xs" placeholder="Ordinal (ej: ${aq.colaA}.º)">
-                  <input type="text" id="det-ord-txt-a" class="w-full px-3 py-2 border rounded-xl text-xs" placeholder="Con letras (ej: ${MathUtils.getOrdinal(aq.colaA).word})">
+                  <input type="text" id="det-ord-num-a" class="w-full px-3 py-2 border rounded-xl text-xs" placeholder="Ordinal (ej: 12.º)">
+                  <input type="text" id="det-ord-txt-a" class="w-full px-3 py-2 border rounded-xl text-xs" placeholder="Con letras (ej: duodécimo)">
                 </div>
               </div>
               <div class="p-4 bg-white rounded-xl border border-slate-200">
                 <span class="font-bold text-purple-700 block mb-2">${this.scenario.museumB} (${aq.colaB} personas):</span>
                 <div class="space-y-2">
-                  <input type="text" id="det-ord-num-b" class="w-full px-3 py-2 border rounded-xl text-xs" placeholder="Ordinal (ej: ${aq.colaB}.º)">
-                  <input type="text" id="det-ord-txt-b" class="w-full px-3 py-2 border rounded-xl text-xs" placeholder="Con letras (ej: ${MathUtils.getOrdinal(aq.colaB).word})">
+                  <input type="text" id="det-ord-num-b" class="w-full px-3 py-2 border rounded-xl text-xs" placeholder="Ordinal (ej: 25.º)">
+                  <input type="text" id="det-ord-txt-b" class="w-full px-3 py-2 border rounded-xl text-xs" placeholder="Con letras (ej: vigésimo quinto)">
                 </div>
               </div>
             </div>
@@ -1272,9 +1255,9 @@ class MathApp {
               👥 Paola está en el lugar <strong>${MathUtils.getOrdinal(aq.paolaPos).word} (${aq.paolaPos}.º)</strong> y Juan está <strong>${aq.juanOffset} lugares por detrás de ella</strong>. Si Juan es el último, ¿cuántas personas tiene la cola ahora?
             </span>
             <div class="flex items-center gap-3 flex-wrap">
-              <span class="text-xs text-slate-600">Operación: ${aq.paolaPos} + ${aq.juanOffset} =</span>
-              <input type="text" id="det-input-juan-total" class="w-24 px-3 py-1.5 border rounded-xl font-bold text-xs" placeholder="Ej: ${aq.colaFinalGreco}">
-              <span class="text-xs text-slate-600">personas en total</span>
+              <span class="text-xs text-slate-600 font-bold">Total en la cola:</span>
+              <input type="text" id="det-input-juan-total" class="w-24 px-3 py-1.5 border rounded-xl font-bold text-xs" placeholder="N.º total">
+              <span class="text-xs text-slate-600">personas</span>
               <button id="btn-check-juan-total" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs rounded-xl">✓ Comprobar</button>
               <span id="feedback-juan-total" class="text-xs font-bold"></span>
             </div>
@@ -1286,9 +1269,9 @@ class MathApp {
               🚪 Iván estaba en el lugar <strong>${MathUtils.getOrdinal(aq.ivanPos).word} (${aq.ivanPos}.º)</strong>. Si <strong>entraron ${aq.personasEntraron} personas</strong>, ¿en qué posición está ahora?
             </span>
             <div class="flex items-center gap-3 flex-wrap">
-              <span class="text-xs text-slate-600">Operación: ${aq.ivanPos} - ${aq.personasEntraron} =</span>
-              <input type="text" id="det-input-ivan-pos" class="w-24 px-3 py-1.5 border rounded-xl font-bold text-xs" placeholder="Ej: ${aq.ivanNuevaPos}.º">
-              <span class="text-xs text-slate-600">lugar (${MathUtils.getOrdinal(aq.ivanNuevaPos).word})</span>
+              <span class="text-xs text-slate-600 font-bold">Nueva posición:</span>
+              <input type="text" id="det-input-ivan-pos" class="w-28 px-3 py-1.5 border rounded-xl font-bold text-xs" placeholder="Ej: 18.º">
+              <span class="text-xs text-slate-600">lugar</span>
               <button id="btn-check-ivan-pos" class="px-4 py-1.5 bg-purple-600 hover:bg-purple-700 text-white font-black text-xs rounded-xl">✓ Comprobar</button>
               <span id="feedback-ivan-pos" class="text-xs font-bold"></span>
             </div>
