@@ -235,9 +235,9 @@ class MathApp {
       <!-- Cabecera de datos contextuales -->
       <div class="bg-gradient-to-br from-indigo-900 via-blue-900 to-slate-900 text-white rounded-3xl p-6 md:p-8 mb-8 shadow-xl relative overflow-hidden">
         <div class="relative z-10">
-          <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
-            <span class="px-3 py-1 bg-blue-500/30 border border-blue-400/40 rounded-full text-blue-200 text-xs font-black uppercase tracking-wider">
-              Prueba de Evaluación (Páginas 6 y 7)
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span class="px-3.5 py-1.5 bg-amber-400 text-slate-900 rounded-xl text-xs font-black uppercase tracking-wider shadow-sm">
+              Prueba de Evaluación · Misión Base
             </span>
             <button class="btn-speak-scenario px-3 py-1 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold transition flex items-center gap-1.5" data-text="${this.scenario.contextLabel}. En 2019: ${v[2019]}. En 2020: ${v[2020]}. En 2021: ${v[2021]}. En 2022: ${v[2022]}">
               <span>🔊 Escuchar datos</span>
@@ -464,7 +464,7 @@ class MathApp {
           <div>
             <div class="flex items-center gap-2 mb-1">
               <span class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black flex items-center justify-center text-sm">3</span>
-              <h3 class="text-lg md:text-xl font-black text-slate-900">Aproxima y completa la tabla (Página 7)</h3>
+              <h3 class="text-lg md:text-xl font-black text-slate-900">Aproxima y completa la tabla</h3>
             </div>
             <p class="text-xs md:text-sm text-slate-600">
               Aproxima el número de personas que visitaron la provincia al orden indicado.
@@ -545,7 +545,7 @@ class MathApp {
           <div>
             <div class="flex items-center gap-2 mb-1">
               <span class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black flex items-center justify-center text-sm">4</span>
-              <h3 class="text-lg md:text-xl font-black text-slate-900">Números Romanos y Monumentos (Página 7)</h3>
+              <h3 class="text-lg md:text-xl font-black text-slate-900">Números Romanos y Monumentos</h3>
             </div>
             <p class="text-xs md:text-sm text-slate-600">
               Indica en qué año se comenzaron a construir estos monumentos de la historia.
@@ -579,13 +579,13 @@ class MathApp {
         </div>
       </div>
 
-      <!-- EJERCICIO 5: NÚMEROS ORDINALES EN LA COLA (PÁGINA 7) -->
+      <!-- EJERCICIO 5: NÚMEROS ORDINALES EN LA COLA -->
       <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm mb-8">
         <div class="flex items-start justify-between gap-4 mb-6">
           <div>
             <div class="flex items-center gap-2 mb-1">
               <span class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-black flex items-center justify-center text-sm">5</span>
-              <h3 class="text-lg md:text-xl font-black text-slate-900">Números Ordinales y Fila del Museo (Página 7)</h3>
+              <h3 class="text-lg md:text-xl font-black text-slate-900">Números Ordinales y Fila del Museo</h3>
             </div>
             <p class="text-xs md:text-sm text-slate-600">
               Para entrar al museo hay una cola formada por <strong>${q.total} personas</strong>.
@@ -984,24 +984,47 @@ class MathApp {
     const dec2022 = MathUtils.decompose(v[2022]);
 
     let html = `
-      <div class="bg-gradient-to-br from-purple-950 via-indigo-900 to-slate-900 text-white rounded-3xl p-6 md:p-8 mb-8 shadow-xl">
-        <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
-          <span class="px-3 py-1 bg-purple-500/30 border border-purple-400/40 rounded-full text-purple-200 text-xs font-black uppercase tracking-wider">
-            Prueba de Evaluación Avanzada (Páginas 8 y 9)
-          </span>
-          <button class="btn-voice-read px-3 py-1 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold transition" data-speak="Misión Detective: En este reto resolverás deducciones inversas, rangos de estimación, cálculos con números romanos y problemas de colas dinámicas.">
-            🔊 Escuchar instrucciones
-          </button>
+      <!-- Cabecera de datos contextuales de Detective (idéntica a Misión Base para no perder la referencia) -->
+      <div class="bg-gradient-to-br from-purple-950 via-indigo-900 to-slate-900 text-white rounded-3xl p-6 md:p-8 mb-8 shadow-xl relative overflow-hidden">
+        <div class="relative z-10">
+          <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+            <span class="px-3.5 py-1.5 bg-amber-400 text-slate-900 rounded-xl text-xs font-black uppercase tracking-wider shadow-sm">
+              Prueba de Evaluación Avanzada · Misión Detective
+            </span>
+            <button class="btn-voice-read px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold transition flex items-center gap-1.5" data-speak="${this.scenario.contextLabel}. En 2019: ${v[2019]}. En 2020: ${v[2020]}. En 2021: ${v[2021]}. En 2022: ${v[2022]}. Utiliza estos datos para resolver los enigmas de abajo.">
+              <span>🔊 Escuchar datos</span>
+            </button>
+          </div>
+          <h2 class="text-xl md:text-2xl font-black text-white mb-4">
+            ${this.scenario.contextLabel}
+          </h2>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4">
+            <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl text-center">
+              <span class="text-xs text-purple-200 font-bold block mb-1">📅 Año 2019</span>
+              <span class="text-xl md:text-2xl font-black text-amber-300 font-display">${MathUtils.formatNumber(v[2019])}</span>
+              <span class="text-[10px] text-purple-200 block mt-1">visitantes</span>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl text-center">
+              <span class="text-xs text-purple-200 font-bold block mb-1">📅 Año 2020</span>
+              <span class="text-xl md:text-2xl font-black text-emerald-300 font-display">${MathUtils.formatNumber(v[2020])}</span>
+              <span class="text-[10px] text-purple-200 block mt-1">visitantes</span>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl text-center">
+              <span class="text-xs text-purple-200 font-bold block mb-1">📅 Año 2021</span>
+              <span class="text-xl md:text-2xl font-black text-cyan-300 font-display">${MathUtils.formatNumber(v[2021])}</span>
+              <span class="text-[10px] text-purple-200 block mt-1">visitantes</span>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl text-center">
+              <span class="text-xs text-purple-200 font-bold block mb-1">📅 Año 2022</span>
+              <span class="text-xl md:text-2xl font-black text-purple-300 font-display">${MathUtils.formatNumber(v[2022])}</span>
+              <span class="text-[10px] text-purple-200 block mt-1">visitantes</span>
+            </div>
+          </div>
         </div>
-        <h2 class="text-xl md:text-2xl font-black text-white mb-2">
-          🔍 Misión Detective Matemático
-        </h2>
-        <p class="text-xs md:text-sm text-purple-200 max-w-2xl">
-          Averigua los datos ocultos a partir de pistas, descomposiciones inversas y cálculos de tiempo histórico.
-        </p>
       </div>
 
-      <!-- EJERCICIO 1 (MODELO A - PÁG 8): DEDUCCIÓN INVERSA -->
+      <!-- EJERCICIO 1: DEDUCCIÓN INVERSA -->
       <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm mb-8">
         <div class="flex items-start justify-between gap-4 mb-6">
           <div>
@@ -1010,10 +1033,10 @@ class MathApp {
               <h3 class="text-lg md:text-xl font-black text-slate-900">Averigua el año y completa cada descomposición</h3>
             </div>
             <p class="text-xs md:text-sm text-slate-600">
-              A partir de la pista dada, deduce el número en cifras, su lectura o el año al que corresponde.
+              Observa los datos de visitantes en la tabla de arriba. A partir de cada pista, deduce el número en cifras y relaciona <strong>a qué año de la tabla corresponde</strong> esa cantidad de visitas.
             </p>
           </div>
-          <button class="btn-voice-read px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold" data-speak="Ejercicio 1: Averigua el año al que corresponde cada descomposición o lectura y completa.">
+          <button class="btn-voice-read px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold" data-speak="Ejercicio 1: Observa los visitantes de cada año en la tabla superior. A partir de cada pista, averigua el número en cifras y di a qué año de visitas corresponde.">
             🔊 Leer
           </button>
         </div>
@@ -1021,7 +1044,10 @@ class MathApp {
         <div class="space-y-6">
           <!-- Tarjeta 1: Se da la descomposición en órdenes de 2021 -->
           <div class="p-5 rounded-2xl bg-purple-50/50 border border-purple-200">
-            <span class="text-xs font-black text-purple-800 uppercase block mb-1">Pista 1: Por órdenes de unidades</span>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-black text-purple-800 uppercase block">Pista 1: Por órdenes de unidades</span>
+              <span class="text-[11px] text-purple-700 font-bold">💡 Busca el año en la tabla de arriba</span>
+            </div>
             <div class="p-3 bg-white rounded-xl font-mono font-bold text-sm text-purple-900 mb-3 border border-purple-200">
               ${dec2021.orderText} =
             </div>
@@ -1035,13 +1061,13 @@ class MathApp {
                 <input type="text" id="det-num-2021" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Número en cifras">
               </div>
               <div>
-                <label class="block font-bold text-slate-700 mb-1">¿Qué año es?</label>
+                <label class="block font-bold text-slate-700 mb-1">📅 ¿A qué año de la tabla corresponde?</label>
                 <select id="det-year-2021" class="w-full px-3 py-2 border rounded-xl text-xs font-bold bg-white">
                   <option value="">Selecciona año...</option>
-                  <option value="2019">2019</option>
-                  <option value="2020">2020</option>
-                  <option value="2021">2021</option>
-                  <option value="2022">2022</option>
+                  <option value="2019">Año 2019</option>
+                  <option value="2020">Año 2020</option>
+                  <option value="2021">Año 2021</option>
+                  <option value="2022">Año 2022</option>
                 </select>
               </div>
             </div>
@@ -1055,7 +1081,10 @@ class MathApp {
 
           <!-- Tarjeta 2: Se da la lectura de 2020 -->
           <div class="p-5 rounded-2xl bg-emerald-50/50 border border-emerald-200">
-            <span class="text-xs font-black text-emerald-800 uppercase block mb-1">Pista 2: Por cómo se lee</span>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-black text-emerald-800 uppercase block">Pista 2: Por cómo se lee</span>
+              <span class="text-[11px] text-emerald-700 font-bold">💡 Busca el año en la tabla de arriba</span>
+            </div>
             <div class="p-3 bg-white rounded-xl font-bold text-sm text-emerald-900 mb-3 border border-emerald-200">
               «${dec2020.wordsText}»
             </div>
@@ -1069,13 +1098,13 @@ class MathApp {
                 <input type="text" id="det-num-2020" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Número en cifras">
               </div>
               <div>
-                <label class="block font-bold text-slate-700 mb-1">¿Qué año es?</label>
+                <label class="block font-bold text-slate-700 mb-1">📅 ¿A qué año de la tabla corresponde?</label>
                 <select id="det-year-2020" class="w-full px-3 py-2 border rounded-xl text-xs font-bold bg-white">
                   <option value="">Selecciona año...</option>
-                  <option value="2019">2019</option>
-                  <option value="2020">2020</option>
-                  <option value="2021">2021</option>
-                  <option value="2022">2022</option>
+                  <option value="2019">Año 2019</option>
+                  <option value="2020">Año 2020</option>
+                  <option value="2021">Año 2021</option>
+                  <option value="2022">Año 2022</option>
                 </select>
               </div>
             </div>
@@ -1089,7 +1118,10 @@ class MathApp {
 
           <!-- Tarjeta 3: Se da la suma de valores de 2022 -->
           <div class="p-5 rounded-2xl bg-blue-50/50 border border-blue-200">
-            <span class="text-xs font-black text-blue-800 uppercase block mb-1">Pista 3: En suma de valores</span>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-black text-blue-800 uppercase block">Pista 3: En suma de valores</span>
+              <span class="text-[11px] text-blue-700 font-bold">💡 Busca el año en la tabla de arriba</span>
+            </div>
             <div class="p-3 bg-white rounded-xl font-mono font-bold text-sm text-blue-900 mb-3 border border-blue-200">
               ${dec2022.valuesText} =
             </div>
@@ -1103,13 +1135,13 @@ class MathApp {
                 <input type="text" id="det-num-2022" class="w-full px-3 py-2 border rounded-xl font-mono text-xs" placeholder="Número en cifras">
               </div>
               <div>
-                <label class="block font-bold text-slate-700 mb-1">¿Qué año es?</label>
+                <label class="block font-bold text-slate-700 mb-1">📅 ¿A qué año de la tabla corresponde?</label>
                 <select id="det-year-2022" class="w-full px-3 py-2 border rounded-xl text-xs font-bold bg-white">
                   <option value="">Selecciona año...</option>
-                  <option value="2019">2019</option>
-                  <option value="2020">2020</option>
-                  <option value="2021">2021</option>
-                  <option value="2022">2022</option>
+                  <option value="2019">Año 2019</option>
+                  <option value="2020">Año 2020</option>
+                  <option value="2021">Año 2021</option>
+                  <option value="2022">Año 2022</option>
                 </select>
               </div>
             </div>
@@ -1182,13 +1214,13 @@ class MathApp {
         </div>
       </div>
 
-      <!-- EJERCICIO 3 (MODELO A - PÁG 9): ESTIMACIÓN Y APROXIMACIONES ABIERTAS -->
+      <!-- EJERCICIO 3 (MODELO A): ESTIMACIÓN Y APROXIMACIONES ABIERTAS -->
       <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm mb-8">
         <div class="flex items-start justify-between gap-4 mb-6">
           <div>
             <div class="flex items-center gap-2 mb-1">
               <span class="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 font-black flex items-center justify-center text-sm">3</span>
-              <h3 class="text-lg md:text-xl font-black text-slate-900">Estimación y Aproximación de 2023 (Página 9)</h3>
+              <h3 class="text-lg md:text-xl font-black text-slate-900">Estimación y Aproximación de 2023</h3>
             </div>
             <p class="text-xs md:text-sm text-slate-600">
               En el mes de mayo de 2023 se esperan aproximadamente <strong>${MathUtils.formatNumber(approxVal)} visitantes</strong>.
@@ -1224,13 +1256,13 @@ class MathApp {
         </div>
       </div>
 
-      <!-- EJERCICIO 4 (MODELO A - PÁG 9): DURACIÓN DE CONSTRUCCIÓN CON NÚMEROS ROMANOS -->
+      <!-- EJERCICIO 4 (MODELO A): DURACIÓN DE CONSTRUCCIÓN CON NÚMEROS ROMANOS -->
       <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm mb-8">
         <div class="flex items-start justify-between gap-4 mb-6">
           <div>
             <div class="flex items-center gap-2 mb-1">
               <span class="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 font-black flex items-center justify-center text-sm">4</span>
-              <h3 class="text-lg md:text-xl font-black text-slate-900">Años que tardaron en construirse (Página 9)</h3>
+              <h3 class="text-lg md:text-xl font-black text-slate-900">Años que tardaron en construirse</h3>
             </div>
             <p class="text-xs md:text-sm text-slate-600">
               Observa el año de inicio y finalización de cada edificio y averigua cuántos años tardaron en construir cada uno.
@@ -1264,13 +1296,13 @@ class MathApp {
         </div>
       </div>
 
-      <!-- EJERCICIO 5 (MODELO A - PÁG 9): RETOS AVANZADOS DE NÚMEROS ORDINALES -->
+      <!-- EJERCICIO 5 (MODELO A): RETOS AVANZADOS DE NÚMEROS ORDINALES -->
       <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm mb-8">
         <div class="flex items-start justify-between gap-4 mb-6">
           <div>
             <div class="flex items-center gap-2 mb-1">
               <span class="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 font-black flex items-center justify-center text-sm">5</span>
-              <h3 class="text-lg md:text-xl font-black text-slate-900">Retos con Números Ordinales (Página 9)</h3>
+              <h3 class="text-lg md:text-xl font-black text-slate-900">Retos con Números Ordinales</h3>
             </div>
             <p class="text-xs md:text-sm text-slate-600">
               En la cola para el museo A hay <strong>${aq.colaA} personas</strong>, y para el museo B hay <strong>${aq.colaB}</strong>.
@@ -1384,8 +1416,11 @@ class MathApp {
           fb.innerHTML = `<span class="text-emerald-600">🎉 ¡Correcto! Año ${cardYear} con ${MathUtils.formatNumber(expectedNum)} (+2 ⭐).</span>`;
           this.addStars(2);
           if (window.sound) sound.playCorrect();
+        } else if (numVal === expectedNum && okDecomp && selectedYear !== cardYear) {
+          fb.innerHTML = `<span class="text-amber-600">⚠️ El número en cifras es correcto (${MathUtils.formatNumber(expectedNum)}), pero mira en la tabla de arriba a qué año de visitantes corresponde.</span>`;
+          if (window.sound) sound.playWrong();
         } else {
-          fb.innerHTML = `<span class="text-rose-600">✕ Revisa el número en cifras, el año o la descomposición.</span>`;
+          fb.innerHTML = `<span class="text-rose-600">✕ Revisa el número en cifras, la descomposición o el año seleccionado de la tabla.</span>`;
           if (window.sound) sound.playWrong();
         }
       });
