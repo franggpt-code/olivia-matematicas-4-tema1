@@ -128,25 +128,26 @@
     <!-- 1. VISTA: INICIO / PORTADA -->
     <section id="view-home" class="view-section">
       <!-- Hero Banner -->
-      <div class="bg-gradient-to-br from-blue-700 via-indigo-700 to-purple-800 text-white rounded-3xl p-6 md:p-10 mb-8 shadow-xl relative overflow-hidden">
+      <div class="hero-banner p-6 md:p-10 mb-8 relative overflow-hidden">
         <div class="max-w-2xl relative z-10">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-white/20 text-white uppercase tracking-wider mb-3 backdrop-blur-xs">
-            ✨ Matemáticas 4.º Primaria · Tema 1
-          </span>
+          <div class="hero-badge mb-3">
+            <span>✨</span>
+            <span>Matemáticas 4.º Primaria · Tema 1</span>
+          </div>
           <h1 class="text-3xl md:text-5xl font-black font-display tracking-tight text-white mb-4 leading-tight">
             ¡Hola, Olivia!<br>
             <span class="text-amber-300">Domina los conceptos</span> del examen
           </h1>
-          <p class="text-sm md:text-base text-blue-100 font-medium leading-relaxed mb-6">
+          <p class="hero-p mb-6">
             Entrena todos los conceptos clave de este tema: valor posicional de números de 5 cifras, aproximación y redondeo, números romanos y problemas de números ordinales en filas reales. ¡Con casuísticas variadas y generador aleatorio para no aburrirte nunca!
           </p>
 
           <div class="flex items-center gap-3 flex-wrap">
-            <button class="px-6 py-3 bg-white text-blue-700 hover:bg-blue-50 font-black text-sm rounded-2xl shadow-lg transition transform active:scale-95" onclick="app.navigate('base')">
-              🚀 Empezar Misión Base
+            <button class="hero-btn-primary px-6 py-3 rounded-2xl text-sm" onclick="app.navigate('base')">
+              <span>Empezar Misión Base</span> <span>🚀</span>
             </button>
-            <button class="px-6 py-3 bg-blue-900/60 hover:bg-blue-900/80 text-white border border-white/20 font-black text-sm rounded-2xl shadow-lg transition" onclick="app.navigate('express')">
-              ⚡ Desafío Rápido de 10 Preguntas
+            <button class="hero-btn-secondary px-6 py-3 rounded-2xl text-sm" onclick="app.navigate('express')">
+              <span>Desafío Rápido</span> <span>⚡</span>
             </button>
           </div>
         </div>
