@@ -294,7 +294,7 @@ class MathApp {
           <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5" id="ex1-block-2020">
             <div class="flex items-center justify-between mb-3">
               <span class="font-black text-slate-800 text-base">🟢 Año 2020: <span class="text-blue-700">${MathUtils.formatNumber(v[2020])}</span></span>
-              <button class="btn-peek-hint text-xs font-bold text-blue-600 hover:underline" data-target="hint-2020">💡 Ver chuleta / pistas</button>
+              <button class="btn-peek-hint text-xs font-bold text-blue-600 hover:underline" data-target="hint-2020">💡 Ver esquemas / pistas</button>
             </div>
             <div id="hint-2020" class="hidden text-xs bg-blue-50 text-blue-800 p-3 rounded-xl mb-3 border border-blue-200">
               📌 <strong>Pista:</strong> Indica cuántas centenas, decenas y unidades tiene (ej: 6 C + 4 D + 2 U). En valores, escribe la suma de unidades (ej: 600 + 40 + 2).
@@ -326,7 +326,7 @@ class MathApp {
           <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5" id="ex1-block-2021">
             <div class="flex items-center justify-between mb-3">
               <span class="font-black text-slate-800 text-base">🔵 Año 2021: <span class="text-blue-700">${MathUtils.formatNumber(v[2021])}</span></span>
-              <button class="btn-peek-hint text-xs font-bold text-blue-600 hover:underline" data-target="hint-2021">💡 Ver chuleta / pistas</button>
+              <button class="btn-peek-hint text-xs font-bold text-blue-600 hover:underline" data-target="hint-2021">💡 Ver esquemas / pistas</button>
             </div>
             <div id="hint-2021" class="hidden text-xs bg-blue-50 text-blue-800 p-3 rounded-xl mb-3 border border-blue-200">
               📌 <strong>Pista:</strong> Empieza por las decenas de millar (DM), luego UM, C, D y U (ej: 5 DM + 2 UM + 8 C + 4 D + 1 U). En suma de valores: 50.000 + 2.000...
@@ -358,7 +358,7 @@ class MathApp {
           <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5" id="ex1-block-2022">
             <div class="flex items-center justify-between mb-3">
               <span class="font-black text-slate-800 text-base">🟣 Año 2022: <span class="text-blue-700">${MathUtils.formatNumber(v[2022])}</span></span>
-              <button class="btn-peek-hint text-xs font-bold text-blue-600 hover:underline" data-target="hint-2022">💡 Ver chuleta / pistas</button>
+              <button class="btn-peek-hint text-xs font-bold text-blue-600 hover:underline" data-target="hint-2022">💡 Ver esquemas / pistas</button>
             </div>
             <div id="hint-2022" class="hidden text-xs bg-blue-50 text-blue-800 p-3 rounded-xl mb-3 border border-blue-200">
               📌 <strong>Pista:</strong> Empieza por las decenas de millar (DM), luego UM, C, D y U (ej: 7 DM + 3 UM + 4 C + 5 D + 2 U). En suma de valores: 70.000 + 3.000...
@@ -739,7 +739,7 @@ class MathApp {
           fb.innerHTML = `<span class="text-emerald-600">👏 ¡Muy bien! Has acertado ${hits} de 3 apartados (+1 ⭐).</span>`;
           if (window.sound) sound.playCorrect();
         } else {
-          fb.innerHTML = `<span class="text-amber-700">💡 Revisa las respuestas. Puedes pulsar en "Ver chuleta / pistas" arriba.</span>`;
+          fb.innerHTML = `<span class="text-amber-700">💡 Revisa las respuestas. Puedes pulsar en "Ver esquemas / pistas" arriba.</span>`;
           if (window.sound) sound.playWrong();
         }
       });
@@ -1983,7 +1983,7 @@ class MathApp {
   }
 
   // ---------------------------------------------------------------------------
-  // PARTE 6: GUÍA RESUMEN DE ESTUDIO (CHULETA IMPRIMIBLE)
+  // PARTE 6: GUÍA RESUMEN DE ESTUDIO (ESQUEMAS IMPRIMIBLES)
   // ---------------------------------------------------------------------------
   renderStudyGuide() {
     const container = document.getElementById('study-guide-content');
@@ -1996,7 +1996,7 @@ class MathApp {
         <!-- Barra de impresión -->
         <div class="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
           <div>
-            <h3 class="font-black text-slate-900 text-base">📚 Chuleta Oficial de Matemáticas · Tema 1</h3>
+            <h3 class="font-black text-slate-900 text-base">📚 Esquemas Oficiales de Matemáticas · Tema 1</h3>
             <p class="text-xs text-slate-500">Diseñada para repasar los 4 conceptos clave antes del control escolar.</p>
           </div>
           <button class="px-4 py-2 bg-slate-900 hover:bg-black text-white font-black text-xs rounded-xl shadow-xs transition flex items-center gap-1.5" onclick="window.print()">

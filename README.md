@@ -39,7 +39,7 @@ Aplicación web interactiva, pedagógica y lúdica diseñada especialmente para 
 6. **🏛️ El Templo Romano (Mini-Juego Arcade)**
    - Juego rápido de tarjetas contra racha para agilizar la lectura y conversión de números romanos.
 
-7. **📚 Chuleta / Guía de Repaso Imprimible**
+7. **📚 Esquemas / Guía de Repaso Imprimibles**
    - Resumen visual con tablas de órdenes de unidades, la regla del 5 para redondear, tabla de números romanos y ordinales, lista para imprimir (`Ctrl + P`).
 
 8. **🎓 Diploma Oficial de Honor**

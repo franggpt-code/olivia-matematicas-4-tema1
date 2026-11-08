@@ -362,7 +362,7 @@ const MathData = {
   ],
 
   // ---------------------------------------------------------------------------
-  // 3. GUÍA RESUMEN DE ESTUDIO (CHULETA OFICIAL PARA OLIVIA)
+  // 3. GUÍA RESUMEN DE ESTUDIO (ESQUEMAS OFICIALES PARA OLIVIA)
   // ---------------------------------------------------------------------------
   studyGuide: {
     blocks: [
